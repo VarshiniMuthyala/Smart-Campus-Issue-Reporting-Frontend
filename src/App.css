@@ -1,0 +1,8926 @@
+/* =========================================================
+   CAMPUSFIX
+   PREMIUM CAMPUS COMPLAINT MANAGEMENT UI
+   ========================================================= */
+
+/* =========================================================
+   DESIGN SYSTEM
+   ========================================================= */
+
+:root {
+    --primary: #D4AF37;
+    --primary-dark: #B89628;
+    --primary-light: rgba(212, 175, 55, 0.15);
+
+    --gold: #D4AF37;
+    --gold-primary: #D4AF37;
+    --gold-bright: #F5D76E;
+    --gold-dark: #B89628;
+    --gold-glow: rgba(212, 175, 55, 0.25);
+
+    --cyan: #F5D76E;
+    --cyan-light: rgba(245, 215, 110, 0.12);
+
+    --success: #10B981;
+    --success-light: rgba(16, 185, 129, 0.15);
+
+    --warning: #F59E0B;
+    --warning-light: rgba(245, 158, 11, 0.15);
+
+    --danger: #EF4444;
+    --danger-dark: #DC2626;
+    --danger-light: rgba(239, 68, 68, 0.15);
+
+    --purple: #D4AF37;
+    --purple-light: rgba(212, 175, 55, 0.15);
+
+    --orange: #F59E0B;
+    --orange-light: rgba(245, 158, 11, 0.15);
+
+    --text: #FFFFFF;
+    --text-secondary: #A1A1AA;
+    --muted: #71717A;
+
+    --white: #FFFFFF;
+    --page: #0B0B0F;
+    --card: #18181B;
+    --card-hover: #222226;
+
+    --border: #3F3F46;
+    --border-dark: #27272A;
+
+    --shadow-sm:
+        0 2px 8px rgba(0, 0, 0, 0.5);
+
+    --shadow:
+        0 8px 25px rgba(0, 0, 0, 0.65);
+
+    --shadow-lg:
+        0 18px 45px rgba(0, 0, 0, 0.85);
+
+    --radius-sm: 8px;
+    --radius: 14px;
+    --radius-lg: 20px;
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    font-family:
+        Inter,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    color: var(--text);
+    background: var(--page);
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+    min-height: 100vh;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+input,
+textarea,
+select {
+    outline: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+}
+
+
+/* =========================================================
+   GLOBAL SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #eef1f6;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c4cad8;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #aeb6c7;
+}
+
+
+/* =========================================================
+   COMMON PAGE
+   ========================================================= */
+
+.dashboard,
+.technician-dashboard,
+.admin-dashboard,
+.complaint-page {
+    min-height: 100vh;
+    background:
+        radial-gradient(
+            circle at 10% 0%,
+            rgba(91, 92, 240, 0.055),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(6, 182, 212, 0.045),
+            transparent 25%
+        ),
+        var(--page);
+}
+
+
+/* =========================================================
+   AUTHENTICATION
+   LOGIN + SIGNUP
+   ========================================================= */
+
+.auth-container {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 20px;
+
+    position: relative;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 18% 20%,
+            rgba(212, 175, 55, 0.12),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 82% 80%,
+            rgba(245, 215, 110, 0.08),
+            transparent 35%
+        ),
+        #0B0B0F;
+}
+
+.auth-container::before {
+    content: "";
+
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+
+    top: -180px;
+    right: -100px;
+
+    background: rgba(212, 175, 55, 0.04);
+}
+
+.auth-container::after {
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    bottom: -160px;
+    left: -100px;
+
+    background: rgba(245, 215, 110, 0.04);
+}
+
+.auth-card {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: 460px;
+
+    padding: 42px 42px 36px;
+
+    background: #18181B;
+
+    border: 1px solid #3F3F46;
+
+    border-radius: 22px;
+
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75);
+
+    backdrop-filter: blur(12px);
+
+    animation: authAppear 0.45s ease;
+
+    color: #FFFFFF;
+}
+
+@keyframes authAppear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   AUTH LOGO
+   ========================================================= */
+
+.auth-logo {
+    width: 58px;
+    height: 58px;
+
+    margin: 0 auto 17px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 16px;
+
+    color: #0B0B0F;
+
+    background:
+        linear-gradient(
+            135deg,
+            #D4AF37,
+            #F5D76E
+        );
+
+    font-size: 25px;
+    font-weight: 800;
+
+    box-shadow:
+        0 10px 22px rgba(212, 175, 55, 0.3);
+}
+
+.auth-title,
+.auth-card > h1 {
+    margin: 0;
+
+    text-align: center;
+
+    font-size: 31px;
+    line-height: 1.2;
+
+    font-weight: 800;
+
+    letter-spacing: -0.7px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #D4AF37,
+            #F5D76E
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+.auth-subtitle,
+.auth-card .subtitle {
+    max-width: 340px;
+
+    margin: 8px auto 0;
+
+    text-align: center;
+
+    color: var(--muted);
+
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+.auth-card > h2 {
+    margin: 30px 0 21px;
+
+    color: var(--text);
+
+    font-size: 22px;
+    font-weight: 750;
+
+    letter-spacing: -0.3px;
+}
+
+.login-heading {
+    margin: 30px 0 22px;
+}
+
+.login-heading h2 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: 22px;
+    font-weight: 750;
+}
+
+.login-heading p {
+    margin: 6px 0 0;
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   AUTH FORM
+   ========================================================= */
+
+.auth-card form {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-card form > label,
+.auth-field label {
+    display: block;
+
+    margin: 0 0 7px;
+
+    color: #FFFFFF;
+
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.auth-card form > input,
+.auth-card form > select,
+.auth-card form > textarea,
+.auth-field input,
+.auth-field select,
+.auth-field textarea {
+    width: 100%;
+
+    min-height: 48px;
+
+    margin: 0 0 17px;
+
+    padding: 12px 14px;
+
+    border: 1px solid #3F3F46;
+
+    border-radius: 10px;
+
+    background: #121215;
+
+    color: #FFFFFF;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.auth-card form > input::placeholder,
+.auth-field input::placeholder {
+    color: #71717A;
+}
+
+.auth-card form > input:focus,
+.auth-card form > select:focus,
+.auth-card form > textarea:focus,
+.auth-field input:focus,
+.auth-field select:focus,
+.auth-field textarea:focus {
+    border-color: #D4AF37;
+
+    background: #18181B;
+
+    box-shadow:
+        0 0 0 4px rgba(212, 175, 55, 0.15);
+}
+
+.auth-card form > select,
+.auth-field select {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   INPUT WRAPPER
+   ========================================================= */
+
+.input-wrapper {
+    position: relative;
+
+    width: 100%;
+
+    margin-bottom: 17px;
+}
+
+.input-wrapper input {
+    width: 100%;
+
+    height: 48px;
+
+    padding: 0 14px 0 43px;
+
+    border: 1px solid var(--border-dark);
+
+    border-radius: 10px;
+
+    background: #fbfcff;
+
+    color: var(--text);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.input-wrapper input:focus {
+    border-color: var(--primary);
+
+    background: white;
+
+    box-shadow:
+        0 0 0 4px rgba(91, 92, 240, 0.10);
+}
+
+.input-icon {
+    position: absolute;
+
+    left: 14px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #8b95a7;
+
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   AUTH BUTTON
+   ========================================================= */
+
+.auth-card form > button[type="submit"],
+.auth-submit-button,
+.auth-submit-gold {
+    width: 100%;
+
+    min-height: 49px;
+
+    margin-top: 6px;
+
+    padding: 12px 18px;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    color: #0B0B0F;
+
+    background:
+        linear-gradient(
+            135deg,
+            #D4AF37,
+            #F5D76E
+        );
+
+    font-size: 15px;
+    font-weight: 800;
+
+    box-shadow:
+        0 8px 20px rgba(212, 175, 55, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+    cursor: pointer;
+}
+
+.auth-card form > button[type="submit"]:hover:not(:disabled),
+.auth-submit-button:hover:not(:disabled),
+.auth-submit-gold:hover:not(:disabled) {
+    transform: translateY(-2px);
+
+    filter: brightness(1.05);
+
+    box-shadow:
+        0 12px 28px rgba(212, 175, 55, 0.35);
+}
+
+.auth-card form > button[type="submit"]:active:not(:disabled),
+.auth-submit-button:active:not(:disabled),
+.auth-submit-gold:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   SPINNER
+   ========================================================= */
+
+.button-spinner {
+    display: inline-block;
+
+    width: 15px;
+    height: 15px;
+
+    margin-right: 7px;
+
+    vertical-align: -2px;
+
+    border: 2px solid rgba(255, 255, 255, 0.4);
+
+    border-top-color: white;
+
+    border-radius: 50%;
+
+    animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   AUTH MESSAGES
+   ========================================================= */
+
+.auth-message,
+.auth-error,
+.message {
+    margin-top: 15px;
+
+    padding: 12px 14px;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    font-size: 13px;
+    line-height: 1.45;
+
+    font-weight: 600;
+}
+
+.auth-message {
+    background: var(--success-light);
+
+    border: 1px solid #bbf0cd;
+
+    color: #15803d;
+}
+
+.auth-error {
+    background: var(--danger-light);
+
+    border: 1px solid #fecaca;
+
+    color: #b91c1c;
+}
+
+.message.success {
+    background: var(--success-light);
+    color: var(--success);
+}
+
+.message.error {
+    background: var(--danger-light);
+    color: var(--danger);
+}
+
+
+/* =========================================================
+   SWITCH AUTH
+   ========================================================= */
+
+.switch-auth,
+.switch-text {
+    margin: 23px 0 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 5px;
+
+    color: #A1A1AA;
+
+    font-size: 13px;
+
+    text-align: center;
+}
+
+.switch-auth button,
+.switch-text button,
+.link-button,
+.back-to-login-btn {
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #F5D76E;
+
+    font-weight: 750;
+
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.switch-auth button:hover,
+.switch-text button:hover,
+.back-to-login-btn:hover {
+    color: #FFFFFF;
+}
+
+/* Forgot & Reset Password UI elements */
+.auth-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 7px;
+}
+
+.forgot-password-link {
+    background: none;
+    border: none;
+    color: #F5D76E;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+.forgot-password-link:hover {
+    color: #FFFFFF;
+}
+
+.auth-logo-badge {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background: rgba(212, 175, 55, 0.15);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    font-size: 26px;
+}
+
+.forgot-instruction,
+.reset-instruction {
+    text-align: center;
+    color: #A1A1AA;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0 0 22px;
+}
+
+.password-input-wrapper {
+    margin-bottom: 16px;
+}
+
+.password-input-wrapper label {
+    display: block;
+    margin-bottom: 7px;
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-with-icon input {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 44px 12px 14px !important;
+    border: 1px solid #3F3F46;
+    border-radius: 10px;
+    background: #121215;
+    color: #FFFFFF;
+}
+
+.input-with-icon input:focus {
+    border-color: #D4AF37;
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.15);
+}
+
+.toggle-password-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #A1A1AA;
+    padding: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: color 0.2s ease, transform 0.15s ease;
+    z-index: 5;
+}
+
+.toggle-password-btn:hover {
+    color: #D4AF37;
+}
+
+.toggle-password-btn:active {
+    transform: translateY(-50%) scale(0.92);
+}
+
+.toggle-password-btn svg {
+    display: block;
+    pointer-events: none;
+}
+
+.password-criteria-box {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 10px 0 18px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: #121215;
+    border: 1px solid #27272A;
+}
+
+.criteria-item {
+    font-size: 12px;
+    color: #71717A;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.criteria-item.met {
+    color: #34D399;
+}
+
+.forgot-success-box,
+.reset-success-box {
+    text-align: center;
+    padding: 24px 16px;
+}
+
+.forgot-success-icon,
+.reset-success-icon {
+    font-size: 42px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.forgot-success-box h3,
+.reset-success-box h3 {
+    margin: 0 0 8px;
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.forgot-success-box p,
+.reset-success-box p {
+    color: #A1A1AA;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0 0 20px;
+}
+
+.gold-spinner {
+    width: 36px;
+    height: 36px;
+    margin: 0 auto 12px;
+    border: 3px solid rgba(212, 175, 55, 0.2);
+    border-top-color: #D4AF37;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+.link-button:hover {
+    color: var(--primary-dark);
+
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.dashboard-header,
+.technician-header,
+.admin-header {
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+    min-height: 76px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 14px 42px;
+
+    background:
+        rgba(255, 255, 255, 0.94);
+
+    border-bottom: 1px solid var(--border);
+
+    box-shadow:
+        0 3px 15px rgba(15, 23, 42, 0.04);
+
+    backdrop-filter: blur(14px);
+}
+
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.dashboard-header h1,
+.technician-header h1,
+.admin-header h1 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: 25px;
+
+    font-weight: 850;
+
+    letter-spacing: -0.7px;
+}
+
+.dashboard-header h1::before,
+.technician-header h1::before,
+.admin-header h1::before {
+    content: "●";
+
+    margin-right: 8px;
+
+    color: var(--primary);
+
+    font-size: 15px;
+
+    vertical-align: 2px;
+}
+
+.dashboard-header p,
+.technician-header p,
+.admin-header p {
+    margin: 3px 0 0;
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   USER AREA
+   ========================================================= */
+
+.user-info,
+.technician-user,
+.admin-user {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+}
+
+.user-info > span {
+    color: var(--text-secondary);
+
+    font-size: 13px;
+}
+
+.user-info strong,
+.technician-user strong {
+    color: var(--text);
+}
+
+
+/* =========================================================
+   LOGOUT
+   ========================================================= */
+
+.user-info button,
+.technician-user > button,
+.admin-logout {
+    padding: 9px 14px;
+
+    border: 1px solid #fecaca;
+
+    border-radius: 9px;
+
+    background: white;
+
+    color: var(--danger);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.user-info button:hover,
+.technician-user > button:hover,
+.admin-logout:hover {
+    background: var(--danger-light);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.dashboard-content,
+.technician-content {
+    width: min(1280px, calc(100% - 60px));
+
+    margin: 0 auto;
+
+    padding: 32px 0 60px;
+}
+
+.admin-content {
+    width: min(1400px, calc(100% - 60px));
+
+    margin: 0 auto;
+
+    padding: 32px 0 60px;
+}
+
+
+/* =========================================================
+   WELCOME CARDS
+   ========================================================= */
+
+.welcome-card,
+.technician-welcome,
+.admin-welcome {
+    position: relative;
+
+    overflow: hidden;
+
+    margin-bottom: 24px;
+
+    padding: 30px 32px;
+
+    border: 0;
+
+    border-radius: var(--radius-lg);
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4d4fd6 0%,
+            #6468f5 48%,
+            #7278ff 100%
+        );
+
+    box-shadow:
+        0 15px 35px rgba(91, 92, 240, 0.18);
+}
+
+.welcome-card::after,
+.technician-welcome::after,
+.admin-welcome::after {
+    content: "";
+
+    position: absolute;
+
+    width: 230px;
+    height: 230px;
+
+    border-radius: 50%;
+
+    right: -80px;
+    top: -100px;
+
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.welcome-card::before,
+.technician-welcome::before,
+.admin-welcome::before {
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+
+    right: 100px;
+    bottom: -90px;
+
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.welcome-card h2,
+.technician-welcome h2,
+.admin-welcome h2 {
+    position: relative;
+
+    z-index: 2;
+
+    margin: 0 0 7px;
+
+    font-size: 24px;
+
+    font-weight: 800;
+
+    letter-spacing: -0.5px;
+}
+
+.welcome-card p,
+.technician-welcome > div > p:last-child,
+.admin-welcome p {
+    position: relative;
+
+    z-index: 2;
+
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.87);
+
+    font-size: 14px;
+
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   DASHBOARD GRID
+   ========================================================= */
+
+.dashboard-grid,
+.technician-stats,
+.admin-stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 16px;
+
+    margin-bottom: 24px;
+}
+
+
+/* =========================================================
+   STUDENT STAT CARD
+   ========================================================= */
+
+.stat-card {
+    position: relative;
+
+    overflow: hidden;
+
+    min-height: 135px;
+
+    padding: 22px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow-sm);
+
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+.stat-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 75px;
+    height: 75px;
+
+    border-radius: 50%;
+
+    right: -25px;
+    top: -25px;
+
+    background: var(--primary-light);
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow: var(--shadow);
+}
+
+.stat-card h3 {
+    position: relative;
+
+    z-index: 2;
+
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+.stat-card p {
+    position: relative;
+
+    z-index: 2;
+
+    margin: 12px 0 0;
+
+    color: var(--primary);
+
+    font-size: 32px;
+
+    line-height: 1;
+
+    font-weight: 850;
+}
+
+
+/* =========================================================
+   SECTION CARDS
+   ========================================================= */
+
+.complaints-section,
+.technician-section,
+.analytics-section,
+.admin-section {
+    margin-bottom: 24px;
+
+    padding: 27px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-sm);
+}
+
+
+/* =========================================================
+   SECTION HEADERS
+   ========================================================= */
+
+.section-header,
+.technician-section-header,
+.analytics-header,
+.admin-section-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 22px;
+}
+
+.section-header h2,
+.technician-section-header h2,
+.analytics-header h2,
+.admin-section-header h2 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: 20px;
+
+    font-weight: 800;
+
+    letter-spacing: -0.3px;
+}
+
+.section-header p,
+.technician-section-header p,
+.analytics-header p,
+.admin-section-header p {
+    margin: 5px 0 0;
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   LABELS
+   ========================================================= */
+
+.welcome-label,
+.admin-welcome-label,
+.section-label,
+.analytics-label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.4px;
+}
+
+.welcome-label,
+.admin-welcome-label {
+    color: rgba(255, 255, 255, 0.68);
+}
+
+.section-label,
+.analytics-label {
+    color: var(--primary);
+}
+
+
+/* =========================================================
+   PRIMARY BUTTON
+   ========================================================= */
+
+.primary-button,
+.camera-button,
+.submit-button,
+.admin-primary-button,
+.admin-action-button {
+    border: 0;
+
+    border-radius: 10px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            #7074ff
+        );
+
+    font-weight: 750;
+
+    box-shadow:
+        0 6px 15px rgba(91, 92, 240, 0.16);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+.primary-button {
+    padding: 11px 17px;
+}
+
+.primary-button:hover,
+.camera-button:hover,
+.submit-button:hover:not(:disabled),
+.admin-primary-button:hover,
+.admin-action-button:hover {
+    transform: translateY(-2px);
+
+    filter: brightness(1.03);
+
+    box-shadow:
+        0 10px 22px rgba(91, 92, 240, 0.23);
+}
+
+
+/* =========================================================
+   COMPLAINT LIST
+   ========================================================= */
+
+.complaint-list,
+.technician-complaint-list,
+.admin-complaint-list,
+.request-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+
+/* =========================================================
+   COMPLAINT CARD
+   ========================================================= */
+
+.complaint-card,
+.technician-complaint-card,
+.admin-complaint-card {
+    display: flex;
+
+    gap: 19px;
+
+    padding: 18px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 15px;
+
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease;
+}
+
+.complaint-card:hover,
+.technician-complaint-card:hover,
+.admin-complaint-card:hover {
+    transform: translateY(-3px);
+
+    border-color: #d6daf4;
+
+    box-shadow: var(--shadow);
+}
+
+
+/* =========================================================
+   COMPLAINT IMAGE
+   ========================================================= */
+
+.complaint-info {
+    display: flex;
+
+    gap: 18px;
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+.complaint-image,
+.no-photo {
+    width: 175px;
+    height: 125px;
+
+    flex-shrink: 0;
+
+    object-fit: cover;
+
+    border-radius: 12px;
+}
+
+.complaint-image {
+    border: 1px solid var(--border);
+
+    background: #eef1f7;
+
+    transition: transform 0.25s ease;
+}
+
+.complaint-card:hover .complaint-image {
+    transform: scale(1.025);
+}
+
+.no-photo,
+.admin-no-photo,
+.technician-no-photo {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f1f4f9,
+            #e8ecf4
+        );
+
+    border: 1px dashed #cdd4e1;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   COMPLAINT DETAILS
+   ========================================================= */
+
+.complaint-details,
+.technician-complaint-details,
+.admin-complaint-details {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.complaint-details h3,
+.technician-complaint-details h3,
+.admin-complaint-details h3 {
+    margin: 0 0 8px;
+
+    color: var(--text);
+
+    font-size: 17px;
+
+    font-weight: 800;
+
+    letter-spacing: -0.2px;
+}
+
+.complaint-details p,
+.technician-description,
+.complaint-description {
+    margin: 0 0 10px;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+.complaint-details small {
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   COMPLAINT META
+   ========================================================= */
+
+.complaint-meta {
+    min-width: 150px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.complaint-meta span,
+.status-badge,
+.technician-status {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 29px;
+
+    padding: 6px 10px;
+
+    border-radius: 8px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+.category {
+    background: var(--primary-light);
+
+    color: var(--primary-dark);
+}
+
+.priority {
+    background: var(--warning-light);
+
+    color: #b45309;
+}
+
+.technician {
+    background: var(--cyan-light) !important;
+
+    color: #0e7490 !important;
+}
+
+.status,
+.status-resolved {
+    background: var(--success-light);
+
+    color: #15803d;
+}
+
+.status-pending {
+    background: var(--warning-light);
+
+    color: #b45309;
+}
+
+.status-in_progress {
+    background: var(--primary-light);
+
+    color: var(--primary-dark);
+}
+
+
+/* =========================================================
+   EMPTY STATES
+   ========================================================= */
+
+.empty-state,
+.technician-empty {
+    padding: 60px 25px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fafbff,
+            #f6f9ff
+        );
+
+    border: 1px dashed #ccd4e3;
+
+    border-radius: var(--radius);
+
+    color: var(--muted);
+}
+
+.empty-state-icon {
+    width: 64px;
+    height: 64px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    font-size: 26px;
+}
+
+.empty-state h2,
+.empty-state h3,
+.technician-empty h2,
+.technician-empty h3 {
+    margin: 0 0 8px;
+
+    color: var(--text);
+
+    font-size: 19px;
+
+    font-weight: 800;
+}
+
+.empty-state p,
+.technician-empty p {
+    max-width: 470px;
+
+    margin: 0 auto 20px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+.empty-state-button {
+    padding: 11px 18px;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    background: var(--primary);
+
+    color: white;
+
+    font-weight: 750;
+}
+
+
+/* =========================================================
+   COMPLAINT FORM PAGE
+   ========================================================= */
+
+.complaint-page {
+    min-height: 100vh;
+
+    padding: 38px 20px 60px;
+}
+
+.complaint-form-card {
+    width: min(880px, 100%);
+
+    margin: 0 auto;
+
+    padding: 38px;
+
+    background: rgba(255, 255, 255, 0.98);
+
+    border: 1px solid var(--border);
+
+    border-radius: 22px;
+
+    box-shadow: var(--shadow-lg);
+}
+
+.back-button {
+    padding: 7px 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--primary);
+
+    font-size: 13px;
+
+    font-weight: 750;
+}
+
+.back-button:hover {
+    color: var(--primary-dark);
+
+    text-decoration: underline;
+}
+
+.complaint-form-card h1 {
+    margin: 18px 0 7px;
+
+    color: var(--text);
+
+    font-size: 30px;
+
+    font-weight: 850;
+
+    letter-spacing: -0.6px;
+}
+
+.complaint-form-card > p {
+    margin: 0 0 27px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+.complaint-form-card form {
+    display: flex;
+
+    flex-direction: column;
+}
+
+.complaint-form-card label {
+    margin-bottom: 7px;
+
+    color: #374151;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+.complaint-form-card input,
+.complaint-form-card textarea,
+.camera-select,
+.technician-actions select,
+.admin-controls select {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border: 1px solid var(--border-dark);
+
+    border-radius: 10px;
+
+    background: #fbfcff;
+
+    color: var(--text);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.complaint-form-card input,
+.complaint-form-card textarea {
+    margin-bottom: 18px;
+}
+
+.complaint-form-card input:focus,
+.complaint-form-card textarea:focus,
+.camera-select:focus,
+.technician-actions select:focus,
+.admin-controls select:focus {
+    border-color: var(--primary);
+
+    background: white;
+
+    box-shadow:
+        0 0 0 4px rgba(91, 92, 240, 0.09);
+}
+
+.complaint-form-card textarea {
+    min-height: 145px;
+
+    resize: vertical;
+}
+
+
+/* =========================================================
+   CAMERA SECTION
+   ========================================================= */
+
+.camera-section {
+    position: relative;
+
+    margin: 10px 0 28px;
+
+    padding: 26px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f2f4ff,
+            #f5fbff
+        );
+
+    border: 1px solid #dce2ff;
+
+    border-radius: 17px;
+}
+
+.camera-section h2 {
+    margin: 0 0 8px;
+
+    color: var(--primary-dark);
+
+    font-size: 20px;
+
+    font-weight: 800;
+}
+
+.camera-info {
+    margin: 0 0 17px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+.camera-select {
+    max-width: 470px;
+
+    margin-bottom: 15px;
+
+    cursor: pointer;
+}
+
+.camera-button,
+.capture-button,
+.retake-button {
+    padding: 11px 19px;
+}
+
+.camera-video {
+    display: block;
+
+    width: min(720px, 100%);
+
+    aspect-ratio: 16 / 9;
+
+    margin: 17px auto 0;
+
+    object-fit: cover;
+
+    background: #111827;
+
+    border: 3px solid white;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 12px 30px rgba(15, 23, 42, 0.16);
+}
+
+.camera-loading {
+    margin: 13px 0;
+
+    color: #b45309;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+.camera-ready,
+.photo-success {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin: 10px 0;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    background: var(--success-light);
+
+    color: #15803d;
+
+    font-size: 12px;
+
+    font-weight: 750;
+}
+
+.capture-button {
+    margin-top: 11px;
+}
+
+.capture-button:disabled,
+.submit-button:disabled {
+    background: #aeb6c5;
+
+    box-shadow: none;
+
+    transform: none;
+}
+
+.stop-camera-button {
+    margin-top: 9px;
+
+    padding: 8px 13px;
+
+    border: 1px solid var(--border-dark);
+
+    border-radius: 9px;
+
+    background: white;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+
+    font-weight: 650;
+}
+
+.photo-preview img {
+    display: block;
+
+    width: min(720px, 100%);
+
+    max-height: 480px;
+
+    margin: 0 auto;
+
+    padding: 5px;
+
+    object-fit: contain;
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    background: white;
+
+    box-shadow: var(--shadow-sm);
+}
+
+.retake-button {
+    margin-top: 12px;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    background: #64748b;
+
+    color: white;
+
+    font-weight: 700;
+}
+
+.retake-button:hover {
+    background: #475569;
+}
+
+.submit-button {
+    width: 100%;
+
+    padding: 14px;
+
+    margin-top: 5px;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   GENERAL SUCCESS MESSAGE
+   ========================================================= */
+
+.complaint-message,
+.technician-message,
+.admin-message {
+    margin-bottom: 20px;
+
+    padding: 12px 14px;
+
+    border-radius: 10px;
+
+    background: var(--success-light);
+
+    border: 1px solid #bbf0cd;
+
+    color: #15803d;
+
+    font-size: 13px;
+
+    font-weight: 650;
+}
+
+
+/* =========================================================
+   TECHNICIAN DASHBOARD
+   ========================================================= */
+
+.technician-welcome {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+}
+
+.specialization-card {
+    position: relative;
+
+    z-index: 3;
+
+    min-width: 210px;
+
+    padding: 15px 17px;
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    border-radius: 13px;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    backdrop-filter: blur(8px);
+}
+
+.specialization-card span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: rgba(255, 255, 255, 0.68);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
+}
+
+.specialization-card strong {
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   TECHNICIAN STAT CARDS
+   ========================================================= */
+
+.technician-stat {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    min-height: 105px;
+
+    padding: 18px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow-sm);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.technician-stat:hover {
+    transform: translateY(-4px);
+
+    box-shadow: var(--shadow);
+}
+
+.stat-icon,
+.admin-stat-icon {
+    width: 46px;
+    height: 46px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    font-size: 20px;
+}
+
+.technician-stat p {
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+.technician-stat strong {
+    display: block;
+
+    margin-top: 4px;
+
+    color: var(--text);
+
+    font-size: 25px;
+
+    font-weight: 850;
+}
+
+
+/* =========================================================
+   TECHNICIAN COMPLAINTS
+   ========================================================= */
+
+.technician-photo {
+    width: 220px;
+
+    flex-shrink: 0;
+}
+
+.technician-photo img,
+.technician-no-photo {
+    width: 220px;
+    height: 165px;
+
+    object-fit: cover;
+
+    border-radius: 13px;
+}
+
+.complaint-title-row {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 12px;
+}
+
+.complaint-id {
+    color: var(--primary);
+
+    font-size: 10px;
+
+    font-weight: 800;
+}
+
+.technician-status {
+    background: var(--warning-light);
+
+    color: #b45309;
+}
+
+.technician-details-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 9px;
+
+    margin: 15px 0;
+}
+
+.technician-details-grid div {
+    padding: 10px 11px;
+
+    border-radius: 10px;
+
+    background: #f7f8fc;
+
+    border: 1px solid #edf0f5;
+}
+
+.technician-details-grid span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    font-weight: 650;
+}
+
+.technician-details-grid strong {
+    color: var(--text-secondary);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   TECHNICIAN ACTIONS
+   ========================================================= */
+
+.technician-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+}
+
+.technician-actions label,
+.admin-controls label {
+    color: var(--muted);
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+.technician-actions select {
+    width: auto;
+
+    min-width: 190px;
+
+    padding: 9px 11px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   ADMIN DASHBOARD
+   ========================================================= */
+
+.admin-header {
+    padding-left: 38px;
+
+    padding-right: 38px;
+}
+
+.admin-brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+}
+
+.admin-brand-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--purple)
+        );
+
+    font-size: 19px;
+
+    box-shadow:
+        0 7px 16px rgba(91, 92, 240, 0.20);
+}
+
+.admin-header h1::before {
+    display: none;
+}
+
+.admin-user {
+    gap: 14px;
+}
+
+.admin-profile {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.admin-avatar {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--purple)
+        );
+
+    font-size: 13px;
+
+    font-weight: 800;
+}
+
+.admin-profile span {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    font-weight: 650;
+}
+
+.admin-profile strong {
+    display: block;
+
+    margin-top: 2px;
+
+    color: var(--text);
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   ADMIN WELCOME
+   ========================================================= */
+
+.admin-welcome {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+.admin-welcome-icon {
+    position: relative;
+
+    z-index: 3;
+
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 17px;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    color: white;
+
+    font-size: 27px;
+}
+
+
+/* =========================================================
+   ADMIN STAT CARDS
+   ========================================================= */
+
+.admin-stat-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    min-height: 105px;
+
+    padding: 18px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow-sm);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.admin-stat-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow: var(--shadow);
+}
+
+.admin-stat-icon.blue {
+    background: var(--primary-light);
+
+    color: var(--primary);
+}
+
+.admin-stat-icon.orange {
+    background: var(--orange-light);
+
+    color: var(--orange);
+}
+
+.admin-stat-icon.purple {
+    background: var(--purple-light);
+
+    color: var(--purple);
+}
+
+.admin-stat-icon.green {
+    background: var(--success-light);
+
+    color: var(--success);
+}
+
+.admin-stat-card span {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+.admin-stat-card strong {
+    display: block;
+
+    margin-top: 4px;
+
+    color: var(--text);
+
+    font-size: 25px;
+
+    font-weight: 850;
+}
+
+
+/* =========================================================
+   REQUEST CARDS
+   ========================================================= */
+
+.request-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 16px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 13px;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.request-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow: var(--shadow-sm);
+}
+
+.request-user-icon {
+    width: 44px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    font-size: 18px;
+}
+
+.request-details {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.request-details h3 {
+    margin: 0 0 4px;
+
+    color: var(--text);
+
+    font-size: 14px;
+
+    font-weight: 800;
+}
+
+.request-details p,
+.request-details small {
+    margin: 3px 0;
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+.request-tags {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 6px;
+
+    margin-top: 7px;
+}
+
+.role-tag,
+.specialization-tag {
+    padding: 5px 8px;
+
+    border-radius: 7px;
+
+    font-size: 9px;
+
+    font-weight: 800;
+}
+
+.admin-role {
+    background: #f1f3f7;
+
+    color: #536174;
+}
+
+.technician-role {
+    background: var(--cyan-light);
+
+    color: #0e7490;
+}
+
+.specialization-tag {
+    background: var(--primary-light);
+
+    color: var(--primary-dark);
+}
+
+.request-actions {
+    display: flex;
+
+    gap: 8px;
+}
+
+.approve-button,
+.reject-button {
+    padding: 9px 12px;
+
+    border: 0;
+
+    border-radius: 9px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease;
+}
+
+.approve-button {
+    background: var(--success-light);
+
+    color: #15803d;
+}
+
+.approve-button:hover {
+    transform: translateY(-1px);
+
+    filter: brightness(0.97);
+}
+
+.reject-button {
+    background: var(--danger-light);
+
+    color: #dc2626;
+}
+
+.reject-button:hover {
+    transform: translateY(-1px);
+
+    filter: brightness(0.97);
+}
+
+
+/* =========================================================
+   ADMIN COMPLAINT IMAGE
+   ========================================================= */
+
+.admin-photo {
+    width: 220px;
+
+    flex-shrink: 0;
+}
+
+.admin-photo img,
+.admin-no-photo {
+    width: 220px;
+    height: 165px;
+
+    object-fit: cover;
+
+    border-radius: 13px;
+}
+
+
+/* =========================================================
+   ADMIN DETAILS
+   ========================================================= */
+
+.admin-details-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 9px;
+
+    margin: 15px 0;
+}
+
+.admin-details-grid span {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+    padding: 10px 11px;
+
+    border-radius: 10px;
+
+    background: #f7f8fc;
+
+    border: 1px solid #edf0f5;
+
+    color: var(--text-secondary);
+
+    font-size: 11px;
+}
+
+.admin-details-grid strong {
+    color: var(--muted);
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================================
+   ADMIN CONTROLS
+   ========================================================= */
+
+.admin-controls {
+    display: flex;
+
+    gap: 13px;
+
+    margin-top: 15px;
+}
+
+.admin-controls div {
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.admin-controls select {
+    padding: 9px 11px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   ANALYTICS
+   ========================================================= */
+
+.analytics-total {
+    min-width: 145px;
+
+    padding: 15px 20px;
+
+    border: 1px solid #dfe3ff;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f0f1ff,
+            #f7f5ff
+        );
+
+    text-align: center;
+}
+
+.analytics-total span {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+.analytics-total strong {
+    display: block;
+
+    margin-top: 4px;
+
+    color: var(--primary-dark);
+
+    font-size: 30px;
+
+    font-weight: 850;
+}
+
+
+/* =========================================================
+   ANALYTICS STATUS GRID
+   ========================================================= */
+
+.analytics-status-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 13px;
+
+    margin-bottom: 20px;
+}
+
+.analytics-status-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 16px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 13px;
+
+    background: #fafbfe;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.analytics-status-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow: var(--shadow-sm);
+}
+
+.analytics-card-icon {
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    font-size: 17px;
+}
+
+.analytics-status-card span {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+.analytics-status-card strong {
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--text);
+
+    font-size: 21px;
+
+    font-weight: 850;
+}
+
+
+/* =========================================================
+   ANALYTICS MAIN GRID
+   ========================================================= */
+
+.analytics-main-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 0.9fr)
+        minmax(0, 1.1fr);
+
+    gap: 15px;
+}
+
+.resolution-card,
+.category-card {
+    padding: 21px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 15px;
+
+    background: white;
+}
+
+.analytics-card-heading {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    margin-bottom: 19px;
+}
+
+.analytics-card-heading span {
+    color: var(--muted);
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.analytics-card-heading h3 {
+    margin: 5px 0 0;
+
+    color: var(--text);
+
+    font-size: 16px;
+
+    font-weight: 800;
+}
+
+.analytics-check {
+    width: 31px;
+    height: 31px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--success-light);
+
+    color: var(--success);
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   RESOLUTION CIRCLE
+   ========================================================= */
+
+.resolution-content {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 28px;
+}
+
+.resolution-circle {
+    --progress: 0%;
+
+    position: relative;
+
+    width: 145px;
+    height: 145px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            var(--primary) var(--progress),
+            #e8ebf2 var(--progress)
+        );
+
+    box-shadow:
+        0 8px 20px rgba(91, 92, 240, 0.10);
+}
+
+.resolution-circle::before {
+    content: "";
+
+    position: absolute;
+
+    width: 110px;
+    height: 110px;
+
+    border-radius: 50%;
+
+    background: white;
+}
+
+.resolution-circle > div {
+    position: relative;
+
+    z-index: 2;
+
+    text-align: center;
+}
+
+.resolution-circle strong {
+    display: block;
+
+    color: var(--primary-dark);
+
+    font-size: 27px;
+
+    font-weight: 850;
+}
+
+.resolution-circle span {
+    color: var(--muted);
+
+    font-size: 10px;
+
+    font-weight: 650;
+}
+
+.resolution-info {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.resolution-info > div {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+}
+
+.pending-dot {
+    background: var(--warning);
+}
+
+.progress-dot {
+    background: var(--primary);
+}
+
+.resolved-dot {
+    background: var(--success);
+}
+
+.resolution-info strong {
+    display: block;
+
+    color: var(--text);
+
+    font-size: 12px;
+}
+
+.resolution-info small {
+    color: var(--muted);
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   CATEGORY BARS
+   ========================================================= */
+
+.category-bars {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+.category-row-top {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 6px;
+}
+
+.category-row-top span {
+    color: var(--text-secondary);
+
+    font-size: 11px;
+
+    font-weight: 650;
+}
+
+.category-row-top strong {
+    color: var(--text);
+
+    font-size: 11px;
+
+    font-weight: 800;
+}
+
+.category-bar {
+    height: 7px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background: #edf0f5;
+}
+
+.category-fill {
+    height: 100%;
+
+    border-radius: 20px;
+
+    transition: width 0.5s ease;
+}
+
+.electrical-fill {
+    background:
+        linear-gradient(
+            90deg,
+            #6366f1,
+            #818cf8
+        );
+}
+
+.plumbing-fill {
+    background:
+        linear-gradient(
+            90deg,
+            #06b6d4,
+            #22d3ee
+        );
+}
+
+.network-fill {
+    background:
+        linear-gradient(
+            90deg,
+            #8b5cf6,
+            #a78bfa
+        );
+}
+
+.furniture-fill {
+    background:
+        linear-gradient(
+            90deg,
+            #ec4899,
+            #f472b6
+        );
+}
+
+.civil-fill {
+    background:
+        linear-gradient(
+            90deg,
+            #f97316,
+            #fb923c
+        );
+}
+
+.general-fill {
+    background:
+        linear-gradient(
+            90deg,
+            #64748b,
+            #94a3b8
+        );
+}
+
+
+/* =========================================================
+   ANALYTICS EMPTY / ERROR
+   ========================================================= */
+
+.analytics-empty {
+    padding: 35px;
+
+    text-align: center;
+
+    color: var(--muted);
+}
+
+.analytics-loading-icon {
+    margin-bottom: 8px;
+
+    font-size: 30px;
+
+    animation: pulse 1.2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        opacity: 0.45;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.analytics-empty h3 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: 14px;
+}
+
+.analytics-error {
+    padding: 13px;
+
+    border-radius: 10px;
+
+    background: var(--danger-light);
+
+    border: 1px solid #fecaca;
+
+    color: #b91c1c;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   ASSIGNMENT / REQUEST COUNTS
+   ========================================================= */
+
+.assignment-count,
+.request-count {
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    background: var(--primary-light);
+
+    color: var(--primary-dark);
+
+    font-size: 10px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.loading-spinner,
+.empty-icon {
+    font-size: 28px;
+}
+
+
+/* =========================================================
+   FOCUS ACCESSIBILITY
+   ========================================================= */
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid rgba(91, 92, 240, 0.18);
+
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .dashboard-grid,
+    .technician-stats,
+    .admin-stats,
+    .analytics-status-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .analytics-main-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-header,
+    .technician-header,
+    .admin-header {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .dashboard-content,
+    .technician-content {
+        width: min(94%, 1000px);
+    }
+
+    .admin-content {
+        width: min(94%, 1100px);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 750px) {
+
+    .auth-container {
+        padding: 25px 15px;
+    }
+
+    .auth-card {
+        max-width: 100%;
+
+        padding: 32px 25px 27px;
+
+        border-radius: 18px;
+    }
+
+    .auth-card > h1,
+    .auth-title {
+        font-size: 28px;
+    }
+
+
+    /* Header */
+
+    .dashboard-header,
+    .technician-header,
+    .admin-header {
+        position: static;
+
+        min-height: auto;
+
+        padding: 16px 18px;
+
+        flex-wrap: wrap;
+
+        gap: 13px;
+    }
+
+    .dashboard-header > div:first-child,
+    .technician-header > div:first-child,
+    .admin-header > div:first-child {
+        min-width: 0;
+    }
+
+    .dashboard-header h1,
+    .technician-header h1,
+    .admin-header h1 {
+        font-size: 22px;
+    }
+
+    .user-info,
+    .technician-user,
+    .admin-user {
+        width: 100%;
+
+        justify-content: flex-end;
+    }
+
+
+    /* Main */
+
+    .dashboard-content,
+    .technician-content,
+    .admin-content {
+        width: calc(100% - 28px);
+
+        padding: 22px 0 42px;
+    }
+
+
+    /* Welcome */
+
+    .welcome-card,
+    .technician-welcome,
+    .admin-welcome {
+        padding: 23px;
+
+        border-radius: 17px;
+    }
+
+    .welcome-card h2,
+    .technician-welcome h2,
+    .admin-welcome h2 {
+        font-size: 20px;
+    }
+
+    .technician-welcome {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .specialization-card {
+        width: 100%;
+
+        min-width: 0;
+    }
+
+
+    /* Stats */
+
+    .dashboard-grid,
+    .technician-stats,
+    .admin-stats,
+    .analytics-status-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* Sections */
+
+    .complaints-section,
+    .technician-section,
+    .analytics-section,
+    .admin-section {
+        padding: 20px 17px;
+
+        border-radius: 16px;
+    }
+
+    .section-header,
+    .technician-section-header,
+    .analytics-header,
+    .admin-section-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+    .primary-button {
+        width: 100%;
+    }
+
+
+    /* Complaints */
+
+    .complaint-card,
+    .technician-complaint-card,
+    .admin-complaint-card {
+        flex-direction: column;
+    }
+
+    .complaint-info {
+        flex-direction: column;
+    }
+
+    .complaint-image,
+    .no-photo,
+    .technician-photo,
+    .technician-photo img,
+    .technician-no-photo,
+    .admin-photo,
+    .admin-photo img,
+    .admin-no-photo {
+        width: 100%;
+    }
+
+    .complaint-image,
+    .no-photo {
+        height: 220px;
+    }
+
+    .technician-photo img,
+    .technician-no-photo,
+    .admin-photo img,
+    .admin-no-photo {
+        height: 220px;
+    }
+
+    .complaint-meta {
+        flex-direction: row;
+
+        flex-wrap: wrap;
+
+        min-width: 0;
+    }
+
+    .complaint-meta span {
+        flex: 1;
+    }
+
+
+    /* Technician */
+
+    .technician-details-grid,
+    .admin-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .technician-actions,
+    .admin-controls {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .technician-actions select {
+        width: 100%;
+    }
+
+
+    /* Requests */
+
+    .request-card {
+        align-items: flex-start;
+
+        flex-wrap: wrap;
+    }
+
+    .request-actions {
+        width: 100%;
+    }
+
+    .request-actions button {
+        flex: 1;
+    }
+
+    .admin-profile {
+        display: none;
+    }
+
+
+    /* Analytics */
+
+    .resolution-content {
+        flex-direction: column;
+    }
+
+    .resolution-info {
+        width: 100%;
+    }
+
+    .analytics-total {
+        width: 100%;
+    }
+
+
+    /* Complaint form */
+
+    .complaint-page {
+        padding: 25px 14px 45px;
+    }
+
+    .complaint-form-card {
+        padding: 27px 19px;
+
+        border-radius: 17px;
+    }
+
+    .complaint-form-card h1 {
+        font-size: 25px;
+    }
+
+    .camera-section {
+        padding: 20px 15px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 450px) {
+
+    .auth-card {
+        padding: 28px 19px 24px;
+    }
+
+    .auth-card > h1,
+    .auth-title {
+        font-size: 26px;
+    }
+
+    .auth-card > h2,
+    .login-heading h2 {
+        font-size: 20px;
+    }
+
+    .dashboard-header,
+    .technician-header,
+    .admin-header {
+        padding: 14px;
+    }
+
+    .dashboard-header h1,
+    .technician-header h1,
+    .admin-header h1 {
+        font-size: 20px;
+    }
+
+    .user-info,
+    .technician-user,
+    .admin-user {
+        justify-content: space-between;
+    }
+
+    .dashboard-content,
+    .technician-content,
+    .admin-content {
+        width: calc(100% - 20px);
+    }
+
+    .welcome-card,
+    .technician-welcome,
+    .admin-welcome {
+        padding: 20px;
+    }
+
+    .stat-card {
+        min-height: 115px;
+
+        padding: 18px;
+    }
+
+    .stat-card p {
+        font-size: 29px;
+    }
+
+    .complaints-section,
+    .technician-section,
+    .analytics-section,
+    .admin-section {
+        padding: 17px 14px;
+    }
+
+    .complaint-form-card {
+        padding: 24px 16px;
+    }
+
+    .complaint-form-card h1 {
+        font-size: 24px;
+    }
+
+    .camera-video {
+        border-radius: 10px;
+    }
+
+    .resolution-circle {
+        width: 130px;
+        height: 130px;
+    }
+
+    .resolution-circle::before {
+        width: 98px;
+        height: 98px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        scroll-behavior: auto !important;
+
+        transition-duration: 0.01ms !important;
+    }
+}
+/* =========================================================
+   CAMPUSFIX - CREATE COMPLAINT PAGE
+   ========================================================= */
+
+.complaint-page {
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 32px 20px 50px;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(99, 102, 241, 0.08),
+            transparent 30%
+        ),
+        #f5f7fb;
+}
+
+
+/* =========================================================
+   FORM CARD
+   ========================================================= */
+
+.complaint-form-card {
+    width: min(900px, 100%);
+
+    margin: 0 auto;
+
+    padding: 34px 38px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 18px 50px rgba(31, 41, 55, 0.08);
+}
+
+
+/* =========================================================
+   BACK BUTTON
+   ========================================================= */
+
+.back-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 18px;
+
+    padding: 9px 14px;
+
+    border: 1px solid #e2e6ee;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #4b5563;
+
+    font-size: 14px;
+
+    font-weight: 650;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.back-button:hover {
+    background: #f5f5ff;
+
+    border-color: #c7c9ff;
+
+    color: #4f46e5;
+}
+
+
+/* =========================================================
+   PAGE TITLE
+   ========================================================= */
+
+.complaint-form-card h1 {
+    margin: 0 0 8px;
+
+    color: #20283a;
+
+    font-size: 30px;
+
+    line-height: 1.25;
+
+    font-weight: 800;
+
+    letter-spacing: -0.6px;
+}
+
+
+/* =========================================================
+   DESCRIPTION UNDER TITLE
+   ========================================================= */
+
+.complaint-form-card > p {
+    margin: 0 0 28px;
+
+    color: #7b8799;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.complaint-form-card form {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0;
+}
+
+
+/* =========================================================
+   FORM FIELD
+   ========================================================= */
+
+.complaint-field {
+    width: 100%;
+
+    margin-bottom: 21px;
+}
+
+
+.complaint-field label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #374151;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+.complaint-form-card input,
+.complaint-form-card textarea,
+.complaint-form-card select {
+    width: 100%;
+
+    border: 1px solid #d8deea;
+
+    border-radius: 12px;
+
+    outline: none;
+
+    background: #fbfcff;
+
+    color: #273043;
+
+    font-size: 15px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.complaint-form-card input {
+    height: 52px;
+
+    padding: 0 15px;
+}
+
+
+.complaint-form-card textarea {
+    min-height: 130px;
+
+    padding: 14px 15px;
+
+    resize: vertical;
+
+    line-height: 1.5;
+}
+
+
+.complaint-form-card select {
+    height: 52px;
+
+    padding: 0 14px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   PLACEHOLDER
+   ========================================================= */
+
+.complaint-form-card input::placeholder,
+.complaint-form-card textarea::placeholder {
+    color: #a3adbd;
+
+    opacity: 1;
+}
+
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+.complaint-form-card input:focus,
+.complaint-form-card textarea:focus,
+.complaint-form-card select:focus {
+    border-color: #6366f1;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 4px rgba(99, 102, 241, 0.09);
+}
+
+
+/* =========================================================
+   FORM GRID
+   ========================================================= */
+
+.complaint-form-grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 18px;
+}
+
+
+/* =========================================================
+   CATEGORY + PRIORITY
+   ========================================================= */
+
+.complaint-options {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 18px;
+
+    margin-bottom: 3px;
+}
+
+
+/* =========================================================
+   CAMERA SECTION
+   ========================================================= */
+
+.camera-section {
+    width: 100%;
+
+    margin: 8px 0 27px;
+
+    padding: 28px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7f7ff,
+            #f5f8ff
+        );
+
+    border: 2px dashed #cdd3f4;
+
+    border-radius: 17px;
+}
+
+
+/* =========================================================
+   CAMERA TITLE
+   ========================================================= */
+
+.camera-section h2 {
+    margin: 0 0 8px;
+
+    color: #4f46e5;
+
+    font-size: 21px;
+
+    font-weight: 800;
+}
+
+
+.camera-info {
+    margin: 0 0 19px;
+
+    color: #7b8799;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   CAMERA CONTAINER
+   ========================================================= */
+
+.camera-container {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+/* =========================================================
+   VIDEO
+   ========================================================= */
+
+.camera-video {
+    display: block;
+
+    width: min(720px, 100%);
+
+    aspect-ratio: 16 / 9;
+
+    margin: 15px auto 0;
+
+    object-fit: cover;
+
+    background: #111827;
+
+    border: 4px solid #ffffff;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 10px 30px rgba(31, 41, 55, 0.15);
+}
+
+
+/* =========================================================
+   CAMERA BUTTONS
+   ========================================================= */
+
+.camera-button,
+.capture-button,
+.retake-button,
+.stop-camera-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 44px;
+
+    padding: 10px 18px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+/* OPEN CAMERA */
+
+.camera-button {
+    border: none;
+
+    background: #6366f1;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 7px 18px rgba(99, 102, 241, 0.20);
+}
+
+
+.camera-button:hover {
+    background: #4f46e5;
+
+    transform: translateY(-1px);
+}
+
+
+/* CAPTURE */
+
+.capture-button {
+    margin-top: 15px;
+
+    border: none;
+
+    background: #16a34a;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 7px 18px rgba(22, 163, 74, 0.18);
+}
+
+
+.capture-button:hover {
+    background: #15803d;
+
+    transform: translateY(-1px);
+}
+
+
+/* STOP */
+
+.stop-camera-button {
+    margin-top: 10px;
+
+    border: 1px solid #d8deea;
+
+    background: #ffffff;
+
+    color: #64748b;
+}
+
+
+.stop-camera-button:hover {
+    background: #f8fafc;
+}
+
+
+/* =========================================================
+   PHOTO PREVIEW
+   ========================================================= */
+
+.photo-preview {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+
+.photo-preview img {
+    display: block;
+
+    width: min(720px, 100%);
+
+    max-height: 480px;
+
+    margin: 8px auto 0;
+
+    padding: 5px;
+
+    object-fit: contain;
+
+    border: 1px solid #dfe4ec;
+
+    border-radius: 14px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 8px 25px rgba(31, 41, 55, 0.08);
+}
+
+
+/* =========================================================
+   PHOTO SUCCESS
+   ========================================================= */
+
+.photo-success,
+.camera-ready {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin: 10px 0;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    background: #ecfdf3;
+
+    color: #15803d;
+
+    font-size: 12px;
+
+    font-weight: 750;
+}
+
+
+/* =========================================================
+   RETAKE
+   ========================================================= */
+
+.retake-button {
+    margin-top: 13px;
+
+    border: none;
+
+    background: #f59e0b;
+
+    color: #ffffff;
+}
+
+
+.retake-button:hover {
+    background: #d97706;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   CAMERA LOADING
+   ========================================================= */
+
+.camera-loading {
+    margin: 13px 0;
+
+    color: #b45309;
+
+    font-size: 13px;
+
+    font-weight: 650;
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON
+   ========================================================= */
+
+.submit-button {
+    width: 100%;
+
+    min-height: 56px;
+
+    margin-top: 5px;
+
+    padding: 13px 20px;
+
+    border: none;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #5b55ed,
+            #7770ff
+        );
+
+    color: #ffffff;
+
+    font-size: 16px;
+
+    font-weight: 800;
+
+    box-shadow:
+        0 12px 26px rgba(99, 102, 241, 0.20);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+.submit-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 16px 30px rgba(99, 102, 241, 0.28);
+}
+
+
+.submit-button:disabled {
+    background: #cbd1dc;
+
+    color: #ffffff;
+
+    box-shadow: none;
+
+    cursor: not-allowed;
+
+    opacity: 0.75;
+}
+
+
+/* =========================================================
+   ERROR / SUCCESS MESSAGE
+   ========================================================= */
+
+.complaint-message {
+    margin: 18px 0;
+
+    padding: 13px 15px;
+
+    border-radius: 11px;
+
+    background: #eff6ff;
+
+    border: 1px solid #bfdbfe;
+
+    color: #1d4ed8;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   REQUIRED STAR
+   ========================================================= */
+
+.complaint-form-card label::after {
+    content: "";
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .complaint-page {
+        padding: 20px 12px 35px;
+    }
+
+
+    .complaint-form-card {
+        padding: 25px 18px;
+
+        border-radius: 16px;
+    }
+
+
+    .complaint-form-card h1 {
+        font-size: 25px;
+    }
+
+
+    .complaint-form-grid,
+    .complaint-options {
+        grid-template-columns: 1fr;
+
+        gap: 0;
+    }
+
+
+    .camera-section {
+        padding: 20px 14px;
+    }
+
+
+    .camera-video {
+        border-radius: 11px;
+    }
+
+
+    .camera-button,
+    .capture-button,
+    .retake-button,
+    .stop-camera-button {
+        width: 100%;
+
+        max-width: 300px;
+    }
+
+}
+/* =========================================================
+   FINAL AUTH POLISH
+   ========================================================= */
+
+.signup-card {
+    width: min(560px, 100%);
+}
+
+.auth-decoration {
+    position: absolute;
+    border-radius: 999px;
+    pointer-events: none;
+    filter: blur(1px);
+}
+
+.auth-decoration-one {
+    width: 260px;
+    height: 260px;
+    top: -100px;
+    left: -80px;
+    background: rgba(91, 92, 240, 0.10);
+}
+
+.auth-decoration-two {
+    width: 320px;
+    height: 320px;
+    right: -120px;
+    bottom: -140px;
+    background: rgba(6, 182, 212, 0.08);
+}
+
+.button-arrow {
+    margin-left: 8px;
+    font-size: 18px;
+}
+
+.button-icon {
+    margin-right: 6px;
+}
+
+.empty-state-content {
+    width: 100%;
+}
+
+/* =========================================================
+   FINAL RESPONSIVE POLISH
+   ========================================================= */
+
+@media (max-width: 760px) {
+    .dashboard-header,
+    .admin-header,
+    .technician-header {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .user-info,
+    .admin-user,
+    .technician-user {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .admin-stats,
+    .technician-stats,
+    .dashboard-grid,
+    .analytics-status-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 520px) {
+    .auth-container {
+        padding: 20px 12px;
+    }
+
+    .auth-card {
+        padding: 28px 20px;
+        border-radius: 18px;
+    }
+
+    .admin-stats,
+    .technician-stats,
+    .dashboard-grid,
+    .analytics-status-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-content,
+    .technician-content,
+    .dashboard-content {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+}
+
+/* =========================================================
+   CAMPUSFIX GLOBAL THEME
+   Single theme controlled by App.jsx
+   Default: DARK BLUE
+   ========================================================= */
+
+body.theme-dark {
+    background: #06111f;
+    color: #e8f0fb;
+}
+
+body.theme-dark .app-shell {
+    min-height: 100vh;
+    background: #06111f;
+    color: #e8f0fb;
+}
+
+/* ---------- DARK BLUE VARIABLES ---------- */
+
+body.theme-dark {
+    --primary: #3b82f6;
+    --primary-dark: #60a5fa;
+    --primary-light: rgba(59, 130, 246, 0.14);
+
+    --cyan: #22d3ee;
+    --cyan-light: rgba(34, 211, 238, 0.12);
+
+    --success: #22c55e;
+    --success-light: rgba(34, 197, 94, 0.12);
+
+    --warning: #f59e0b;
+    --warning-light: rgba(245, 158, 11, 0.13);
+
+    --danger: #f87171;
+    --danger-dark: #ef4444;
+    --danger-light: rgba(248, 113, 113, 0.12);
+
+    --purple: #818cf8;
+    --purple-light: rgba(129, 140, 248, 0.13);
+
+    --orange: #fb923c;
+    --orange-light: rgba(251, 146, 60, 0.12);
+
+    --text: #e8f0fb;
+    --text-secondary: #a9bad0;
+    --muted: #71839a;
+
+    --white: #ffffff;
+    --page: #06111f;
+    --card: #0b1a2d;
+
+    --border: #1c3048;
+    --border-dark: #2a405d;
+
+    --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.22);
+    --shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+    --shadow-lg: 0 20px 55px rgba(0, 0, 0, 0.36);
+}
+
+/* ---------- PAGE BACKGROUNDS ---------- */
+
+body.theme-dark .dashboard,
+body.theme-dark .technician-dashboard,
+body.theme-dark .admin-dashboard,
+body.theme-dark .complaint-page {
+    background:
+        radial-gradient(circle at 8% 0%, rgba(37, 99, 235, 0.16), transparent 28%),
+        radial-gradient(circle at 92% 12%, rgba(8, 145, 178, 0.11), transparent 25%),
+        #06111f;
+}
+
+/* ---------- AUTH ---------- */
+
+body.theme-dark .auth-container {
+    background:
+        radial-gradient(circle at 15% 20%, rgba(37, 99, 235, 0.18), transparent 31%),
+        radial-gradient(circle at 85% 80%, rgba(8, 145, 178, 0.12), transparent 31%),
+        linear-gradient(135deg, #06111f 0%, #08182a 50%, #071426 100%);
+}
+
+body.theme-dark .auth-container::before {
+    background: rgba(59, 130, 246, 0.10);
+}
+
+body.theme-dark .auth-container::after {
+    background: rgba(34, 211, 238, 0.07);
+}
+
+body.theme-dark .auth-card {
+    background: rgba(10, 23, 40, 0.97);
+    border-color: #1d3550;
+    box-shadow: 0 22px 65px rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(14px);
+}
+
+body.theme-dark .auth-title,
+body.theme-dark .auth-card > h1 {
+    background: linear-gradient(135deg, #60a5fa, #22d3ee);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+body.theme-dark .auth-card > h2,
+body.theme-dark .login-heading h2 {
+    color: #edf5ff;
+}
+
+body.theme-dark .auth-card form > label,
+body.theme-dark .auth-field label {
+    color: #b7c6d8;
+}
+
+body.theme-dark .auth-card form > input,
+body.theme-dark .auth-card form > select,
+body.theme-dark .auth-card form > textarea,
+body.theme-dark .auth-field input,
+body.theme-dark .auth-field select,
+body.theme-dark .auth-field textarea,
+body.theme-dark .input-wrapper input {
+    background: #0d1d31;
+    border-color: #29415e;
+    color: #e8f0fb;
+}
+
+body.theme-dark .auth-card form > input::placeholder,
+body.theme-dark .auth-field input::placeholder,
+body.theme-dark .input-wrapper input::placeholder {
+    color: #63758c;
+}
+
+body.theme-dark .auth-card form > input:focus,
+body.theme-dark .auth-card form > select:focus,
+body.theme-dark .auth-card form > textarea:focus,
+body.theme-dark .auth-field input:focus,
+body.theme-dark .auth-field select:focus,
+body.theme-dark .auth-field textarea:focus,
+body.theme-dark .input-wrapper input:focus {
+    background: #10243b;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.14);
+}
+
+body.theme-dark .input-icon {
+    color: #7890aa;
+}
+
+/* ---------- COMMON BUTTONS ---------- */
+
+body.theme-dark .primary-button,
+body.theme-dark .camera-button,
+body.theme-dark .submit-button,
+body.theme-dark .admin-primary-button,
+body.theme-dark .admin-action-button,
+body.theme-dark .auth-card form > button[type="submit"],
+body.theme-dark .auth-submit-button {
+    background: linear-gradient(135deg, #2563eb, #0891b2);
+    box-shadow: 0 8px 22px rgba(37, 99, 235, 0.24);
+}
+
+body.theme-dark .primary-button:hover,
+body.theme-dark .camera-button:hover,
+body.theme-dark .submit-button:hover:not(:disabled),
+body.theme-dark .admin-primary-button:hover,
+body.theme-dark .admin-action-button:hover,
+body.theme-dark .auth-submit-button:hover:not(:disabled) {
+    box-shadow: 0 12px 28px rgba(37, 99, 235, 0.34);
+}
+
+/* ---------- HEADER ---------- */
+
+body.theme-dark .dashboard-header,
+body.theme-dark .technician-header,
+body.theme-dark .admin-header {
+    background: rgba(7, 20, 36, 0.94);
+    border-bottom-color: #1b3048;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+}
+
+body.theme-dark .dashboard-header h1,
+body.theme-dark .technician-header h1,
+body.theme-dark .admin-header h1 {
+    color: #eef6ff;
+}
+
+body.theme-dark .dashboard-header h1::before,
+body.theme-dark .technician-header h1::before,
+body.theme-dark .admin-header h1::before {
+    color: #3b82f6;
+}
+
+body.theme-dark .dashboard-header p,
+body.theme-dark .technician-header p,
+body.theme-dark .admin-header p,
+body.theme-dark .user-info > span {
+    color: #7188a2;
+}
+
+body.theme-dark .user-info strong,
+body.theme-dark .technician-user strong {
+    color: #e8f0fb;
+}
+
+/* ---------- LOGOUT ---------- */
+
+body.theme-dark .user-info button,
+body.theme-dark .technician-user > button,
+body.theme-dark .admin-logout {
+    background: #0d1d31;
+    border-color: rgba(248, 113, 113, 0.34);
+    color: #f87171;
+}
+
+body.theme-dark .user-info button:hover,
+body.theme-dark .technician-user > button:hover,
+body.theme-dark .admin-logout:hover {
+    background: rgba(248, 113, 113, 0.10);
+}
+
+/* ---------- WELCOME ---------- */
+
+body.theme-dark .welcome-card,
+body.theme-dark .technician-welcome,
+body.theme-dark .admin-welcome {
+    background:
+        linear-gradient(135deg, #12315a 0%, #0f3862 50%, #07516a 100%);
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.30);
+}
+
+/* ---------- CARDS ---------- */
+
+body.theme-dark .stat-card,
+body.theme-dark .technician-stat,
+body.theme-dark .admin-stat-card,
+body.theme-dark .complaints-section,
+body.theme-dark .technician-section,
+body.theme-dark .analytics-section,
+body.theme-dark .admin-section,
+body.theme-dark .complaint-card,
+body.theme-dark .technician-complaint-card,
+body.theme-dark .admin-complaint-card,
+body.theme-dark .request-card,
+body.theme-dark .resolution-card,
+body.theme-dark .category-card,
+body.theme-dark .complaint-form-card {
+    background: #0a1728;
+    border-color: #1b3048;
+    box-shadow: var(--shadow-sm);
+}
+
+body.theme-dark .stat-card:hover,
+body.theme-dark .technician-stat:hover,
+body.theme-dark .admin-stat-card:hover,
+body.theme-dark .complaint-card:hover,
+body.theme-dark .technician-complaint-card:hover,
+body.theme-dark .admin-complaint-card:hover,
+body.theme-dark .request-card:hover {
+    border-color: #2d5278;
+    box-shadow: var(--shadow);
+}
+
+body.theme-dark .stat-card::after {
+    background: rgba(59, 130, 246, 0.10);
+}
+
+body.theme-dark .stat-card h3,
+body.theme-dark .technician-stat p,
+body.theme-dark .admin-stat-card span,
+body.theme-dark .analytics-status-card span {
+    color: #8297ae;
+}
+
+body.theme-dark .stat-card p,
+body.theme-dark .admin-stat-card strong,
+body.theme-dark .technician-stat strong {
+    color: #60a5fa;
+}
+
+/* ---------- COMPLAINT DETAILS ---------- */
+
+body.theme-dark .complaint-details h3,
+body.theme-dark .technician-complaint-details h3,
+body.theme-dark .admin-complaint-details h3,
+body.theme-dark .section-header h2,
+body.theme-dark .technician-section-header h2,
+body.theme-dark .analytics-header h2,
+body.theme-dark .admin-section-header h2,
+body.theme-dark .analytics-card-heading h3,
+body.theme-dark .request-details h3,
+body.theme-dark .empty-state h2,
+body.theme-dark .empty-state h3,
+body.theme-dark .technician-empty h2,
+body.theme-dark .technician-empty h3 {
+    color: #e8f0fb;
+}
+
+body.theme-dark .complaint-details p,
+body.theme-dark .technician-description,
+body.theme-dark .complaint-description,
+body.theme-dark .section-header p,
+body.theme-dark .technician-section-header p,
+body.theme-dark .analytics-header p,
+body.theme-dark .admin-section-header p,
+body.theme-dark .request-details p,
+body.theme-dark .request-details small {
+    color: #8297ae;
+}
+
+body.theme-dark .complaint-image {
+    background: #0d1d31;
+    border-color: #29415e;
+}
+
+body.theme-dark .no-photo,
+body.theme-dark .admin-no-photo,
+body.theme-dark .technician-no-photo {
+    background: linear-gradient(135deg, #0d1d31, #10243b);
+    border-color: #2a405d;
+    color: #71839a;
+}
+
+/* ---------- META BADGES ---------- */
+
+body.theme-dark .category,
+body.theme-dark .status-in_progress,
+body.theme-dark .assignment-count,
+body.theme-dark .request-count {
+    background: rgba(59, 130, 246, 0.14);
+    color: #7db3ff;
+}
+
+body.theme-dark .priority,
+body.theme-dark .status-pending {
+    background: rgba(245, 158, 11, 0.13);
+    color: #fbbf24;
+}
+
+body.theme-dark .technician {
+    background: rgba(34, 211, 238, 0.12) !important;
+    color: #67e8f9 !important;
+}
+
+body.theme-dark .status,
+body.theme-dark .status-resolved {
+    background: rgba(34, 197, 94, 0.12);
+    color: #4ade80;
+}
+
+/* ---------- TECHNICIAN / ADMIN DETAILS ---------- */
+
+body.theme-dark .technician-details-grid div,
+body.theme-dark .admin-details-grid span,
+body.theme-dark .analytics-status-card {
+    background: #0d1d31;
+    border-color: #1b3048;
+}
+
+body.theme-dark .technician-details-grid span,
+body.theme-dark .admin-details-grid strong {
+    color: #71839a;
+}
+
+body.theme-dark .technician-details-grid strong,
+body.theme-dark .admin-details-grid span {
+    color: #a9bad0;
+}
+
+/* ---------- REQUEST TAGS ---------- */
+
+body.theme-dark .admin-role {
+    background: #172536;
+    color: #a9bad0;
+}
+
+body.theme-dark .technician-role {
+    background: rgba(34, 211, 238, 0.12);
+    color: #67e8f9;
+}
+
+body.theme-dark .specialization-tag {
+    background: rgba(59, 130, 246, 0.13);
+    color: #7db3ff;
+}
+
+body.theme-dark .approve-button {
+    background: rgba(34, 197, 94, 0.13);
+    color: #4ade80;
+}
+
+body.theme-dark .reject-button {
+    background: rgba(248, 113, 113, 0.13);
+    color: #f87171;
+}
+
+/* ---------- FORM CONTROLS ---------- */
+
+body.theme-dark .complaint-form-card label,
+body.theme-dark .complaint-field label {
+    color: #b7c6d8;
+}
+
+body.theme-dark .complaint-form-card input,
+body.theme-dark .complaint-form-card textarea,
+body.theme-dark .complaint-form-card select,
+body.theme-dark .camera-select,
+body.theme-dark .technician-actions select,
+body.theme-dark .admin-controls select {
+    background: #0d1d31;
+    border-color: #29415e;
+    color: #e8f0fb;
+}
+
+body.theme-dark .complaint-form-card input::placeholder,
+body.theme-dark .complaint-form-card textarea::placeholder {
+    color: #63758c;
+}
+
+body.theme-dark .complaint-form-card input:focus,
+body.theme-dark .complaint-form-card textarea:focus,
+body.theme-dark .complaint-form-card select:focus,
+body.theme-dark .camera-select:focus,
+body.theme-dark .technician-actions select:focus,
+body.theme-dark .admin-controls select:focus {
+    background: #10243b;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.14);
+}
+
+/* ---------- CAMERA ---------- */
+
+body.theme-dark .camera-section {
+    background: linear-gradient(135deg, #0b1d32, #0d263c);
+    border-color: #254665;
+}
+
+body.theme-dark .camera-section h2 {
+    color: #60a5fa;
+}
+
+body.theme-dark .camera-info,
+body.theme-dark .camera-loading {
+    color: #8297ae;
+}
+
+body.theme-dark .camera-video {
+    background: #020914;
+    border-color: #203a56;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.40);
+}
+
+body.theme-dark .stop-camera-button {
+    background: #0d1d31;
+    border-color: #29415e;
+    color: #a9bad0;
+}
+
+body.theme-dark .stop-camera-button:hover {
+    background: #10243b;
+}
+
+body.theme-dark .photo-preview img {
+    background: #081525;
+    border-color: #29415e;
+}
+
+/* ---------- ANALYTICS ---------- */
+
+body.theme-dark .analytics-total {
+    background: linear-gradient(135deg, #10294a, #122c45);
+    border-color: #254665;
+}
+
+body.theme-dark .analytics-total strong,
+body.theme-dark .analytics-card-heading h3 {
+    color: #e8f0fb;
+}
+
+body.theme-dark .analytics-total span,
+body.theme-dark .analytics-card-heading span,
+body.theme-dark .resolution-info small,
+body.theme-dark .category-row-top span {
+    color: #71839a;
+}
+
+body.theme-dark .analytics-status-card strong,
+body.theme-dark .category-row-top strong,
+body.theme-dark .resolution-info strong {
+    color: #dbeafe;
+}
+
+body.theme-dark .category-bar {
+    background: #1a2c42;
+}
+
+body.theme-dark .resolution-circle {
+    background: conic-gradient(
+        #3b82f6 var(--progress),
+        #1b2e45 var(--progress)
+    );
+}
+
+body.theme-dark .resolution-circle::before {
+    background: #0a1728;
+}
+
+body.theme-dark .resolution-circle strong {
+    color: #60a5fa;
+}
+
+/* ---------- EMPTY / MESSAGE ---------- */
+
+body.theme-dark .empty-state,
+body.theme-dark .technician-empty {
+    background: linear-gradient(135deg, #0a1728, #0d1d31);
+    border-color: #2a405d;
+}
+
+body.theme-dark .empty-state-icon {
+    background: rgba(59, 130, 246, 0.13);
+    color: #60a5fa;
+}
+
+body.theme-dark .empty-state p,
+body.theme-dark .technician-empty p,
+body.theme-dark .analytics-empty {
+    color: #71839a;
+}
+
+body.theme-dark .complaint-message,
+body.theme-dark .technician-message,
+body.theme-dark .admin-message {
+    background: rgba(34, 197, 94, 0.10);
+    border-color: rgba(34, 197, 94, 0.22);
+    color: #4ade80;
+}
+
+body.theme-dark .analytics-error,
+body.theme-dark .auth-error,
+body.theme-dark .message.error {
+    background: rgba(248, 113, 113, 0.10);
+    border-color: rgba(248, 113, 113, 0.24);
+    color: #fca5a5;
+}
+
+body.theme-dark .auth-message,
+body.theme-dark .message.success {
+    background: rgba(34, 197, 94, 0.10);
+    border-color: rgba(34, 197, 94, 0.22);
+    color: #4ade80;
+}
+
+/* ---------- LINKS ---------- */
+
+body.theme-dark .switch-auth,
+body.theme-dark .switch-text {
+    color: #71839a;
+}
+
+body.theme-dark .switch-auth button,
+body.theme-dark .switch-text button,
+body.theme-dark .link-button,
+body.theme-dark .back-button {
+    color: #60a5fa;
+}
+
+body.theme-dark .switch-auth button:hover,
+body.theme-dark .switch-text button:hover,
+body.theme-dark .link-button:hover,
+body.theme-dark .back-button:hover {
+    color: #93c5fd;
+}
+
+/* ---------- BACK BUTTON ---------- */
+
+body.theme-dark .back-button {
+    background: #0d1d31;
+    border-color: #29415e;
+}
+
+body.theme-dark .back-button:hover {
+    background: #10243b;
+    border-color: #35618b;
+    text-decoration: none;
+}
+
+/* ---------- THEME TOGGLE ---------- */
+
+.global-theme-toggle {
+    position: fixed;
+    top: 92px;
+    right: 22px;
+    z-index: 9999;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 42px;
+    padding: 9px 14px;
+
+    border: 1px solid #2d4c6b;
+    border-radius: 999px;
+
+    background: rgba(10, 23, 40, 0.94);
+    color: #dcecff;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(12px);
+
+    font-size: 12px;
+    font-weight: 800;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.global-theme-toggle:hover {
+    transform: translateY(-2px);
+    background: #10243b;
+    border-color: #3b82f6;
+    box-shadow: 0 12px 30px rgba(37, 99, 235, 0.22);
+}
+
+.global-theme-toggle-icon {
+    font-size: 16px;
+    line-height: 1;
+}
+
+.global-theme-toggle-text {
+    line-height: 1;
+}
+
+body.theme-light .global-theme-toggle {
+    background: rgba(255, 255, 255, 0.96);
+    border-color: #d6ddea;
+    color: #26364a;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.10);
+}
+
+/* ---------- LIGHT THEME FIXES ---------- */
+
+body.theme-light {
+    background: var(--page);
+}
+
+body.theme-light .app-shell {
+    min-height: 100vh;
+}
+
+/* ---------- SCROLLBAR ---------- */
+
+body.theme-dark ::-webkit-scrollbar-track {
+    background: #071525;
+}
+
+body.theme-dark ::-webkit-scrollbar-thumb {
+    background: #29415e;
+}
+
+body.theme-dark ::-webkit-scrollbar-thumb:hover {
+    background: #3b5d80;
+}
+
+/* ---------- ACCESSIBILITY ---------- */
+
+body.theme-dark button:focus-visible,
+body.theme-dark input:focus-visible,
+body.theme-dark select:focus-visible,
+body.theme-dark textarea:focus-visible {
+    outline-color: rgba(96, 165, 250, 0.35);
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 750px) {
+    .global-theme-toggle {
+        top: 16px;
+        right: 16px;
+        min-width: 42px;
+        width: 42px;
+        height: 42px;
+        padding: 0;
+    }
+
+    .global-theme-toggle-text {
+        display: none;
+    }
+}
+
+@media (max-width: 450px) {
+    .global-theme-toggle {
+        top: 12px;
+        right: 12px;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+
+/* =========================================================
+   CAMPUSFIX GLOBAL NAVBAR + THEME SWITCH
+   ========================================================= */
+
+.app-shell {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.app-theme-navbar {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 10000;
+
+    width: 100%;
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 28px;
+
+    border-bottom: 1px solid #dbe3ee;
+    background: rgba(255, 255, 255, 0.96);
+
+    box-shadow: 0 5px 24px rgba(15, 23, 42, 0.08);
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.app-theme-brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    min-width: 0;
+}
+
+.app-theme-logo {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    color: #ffffff;
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #0891b2
+    );
+
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+
+    box-shadow:
+        0 7px 18px rgba(37, 99, 235, 0.22);
+}
+
+.app-theme-brand div {
+    min-width: 0;
+}
+
+.app-theme-brand strong {
+    display: block;
+
+    color: #17263a;
+
+    font-size: 16px;
+    line-height: 1.1;
+    font-weight: 900;
+}
+
+.app-theme-brand div > span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #73839a;
+
+    font-size: 9px;
+    line-height: 1.1;
+    font-weight: 650;
+}
+
+.app-theme-switch {
+    flex: 0 0 auto;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    height: 42px;
+    min-width: 108px;
+
+    padding: 0 15px;
+
+    border: 1px solid #d3ddea;
+    border-radius: 999px;
+
+    background: #ffffff;
+    color: #26364a;
+
+    font-size: 12px;
+    font-weight: 850;
+
+    box-shadow:
+        0 5px 16px rgba(15, 23, 42, 0.08);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.app-theme-switch:hover {
+    transform: translateY(-1px);
+    border-color: #3b82f6;
+    background: #f7fbff;
+
+    box-shadow:
+        0 8px 22px rgba(37, 99, 235, 0.15);
+}
+
+.app-theme-switch-icon {
+    font-size: 16px;
+    line-height: 1;
+}
+
+/* Content starts below the global navbar */
+.app-page-content {
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 70px;
+}
+
+/* =========================================================
+   DARK BLUE NAVBAR
+   ========================================================= */
+
+body.theme-dark .app-theme-navbar {
+    border-bottom-color: #1b3048;
+    background: rgba(6, 17, 31, 0.94);
+
+    box-shadow:
+        0 6px 25px rgba(0, 0, 0, 0.30);
+}
+
+body.theme-dark .app-theme-brand strong {
+    color: #edf6ff;
+}
+
+body.theme-dark .app-theme-brand div > span {
+    color: #71869e;
+}
+
+body.theme-dark .app-theme-switch {
+    border-color: #294663;
+    background: #0b1a2d;
+    color: #dcecff;
+
+    box-shadow:
+        0 7px 22px rgba(0, 0, 0, 0.25);
+}
+
+body.theme-dark .app-theme-switch:hover {
+    border-color: #3b82f6;
+    background: #10243b;
+
+    box-shadow:
+        0 9px 25px rgba(37, 99, 235, 0.20);
+}
+
+/* =========================================================
+   IMPORTANT AUTH WIDTH FIX
+   ========================================================= */
+
+body.theme-dark .auth-container,
+body.theme-light .auth-container {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+/* Prevent any child from creating horizontal overflow */
+.auth-container *,
+.auth-card *,
+.auth-field *,
+.input-wrapper * {
+    max-width: 100%;
+}
+
+.auth-card {
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   MOBILE NAVBAR
+   ========================================================= */
+
+@media (max-width: 650px) {
+    .app-theme-navbar {
+        height: 62px;
+        padding: 0 14px;
+    }
+
+    .app-page-content {
+        padding-top: 62px;
+    }
+
+    .app-theme-brand strong {
+        font-size: 14px;
+    }
+
+    .app-theme-brand div > span {
+        display: none;
+    }
+
+    .app-theme-logo {
+        width: 35px;
+        height: 35px;
+        flex-basis: 35px;
+    }
+
+    .app-theme-switch {
+        min-width: 42px;
+        width: 42px;
+        height: 40px;
+        padding: 0;
+    }
+
+    .app-theme-switch > span:last-child {
+        display: none;
+    }
+}
+
+@media (max-width: 380px) {
+    .app-theme-navbar {
+        padding: 0 10px;
+    }
+
+    .app-theme-brand strong {
+        font-size: 13px;
+    }
+}
+/* =========================================================
+   AUTH PAGE FINAL POLISH
+   ========================================================= */
+
+.auth-container {
+    width: 100%;
+    min-height: calc(100vh - 70px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 45px 20px;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 500px !important;
+
+    margin: 0 auto;
+
+    padding: 38px 38px 32px;
+
+    border-radius: 20px;
+}
+
+/* Login / Signup headings */
+.auth-card > h1,
+.auth-title {
+    text-align: center;
+}
+
+.auth-card > h2,
+.login-heading h2 {
+    text-align: left;
+}
+
+/* Form fields */
+.auth-field {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.auth-field label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.input-wrapper input {
+    display: block;
+
+    width: 100%;
+    height: 52px;
+
+    padding: 0 15px 0 52px;
+
+    border-radius: 12px;
+
+    box-sizing: border-box;
+}
+
+.input-icon {
+    position: absolute;
+
+    left: 17px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 20px;
+    height: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+/* =========================================================
+   ACCOUNT TYPE
+   ========================================================= */
+
+.auth-field select {
+    position: relative;
+
+    width: 100%;
+    height: 52px;
+
+    padding: 0 45px 0 50px;
+
+    box-sizing: border-box;
+
+    border-radius: 12px;
+
+    appearance: auto;
+}
+
+/*
+   If Account Type uses an icon wrapper,
+   keep the icon vertically centered.
+*/
+.auth-field .input-wrapper .input-icon {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* =========================================================
+   AUTH BUTTON
+   ========================================================= */
+
+.auth-submit-button,
+.auth-card form > button[type="submit"] {
+    width: 100%;
+    min-height: 52px;
+
+    margin-top: 8px;
+
+    border-radius: 12px;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .auth-container {
+        min-height: calc(100vh - 62px);
+        padding: 30px 14px;
+    }
+
+    .auth-card {
+        width: 100%;
+        max-width: 430px !important;
+
+        padding: 30px 22px 27px;
+
+        border-radius: 18px;
+    }
+
+    .input-wrapper input,
+    .auth-field select {
+        height: 50px;
+    }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+
+    .auth-container {
+        padding: 25px 10px;
+    }
+
+    .auth-card {
+        max-width: 100% !important;
+        padding: 26px 17px 24px;
+    }
+
+    .input-wrapper input,
+    .auth-field select {
+        height: 48px;
+        font-size: 14px;
+    }
+
+    .input-icon {
+        left: 14px;
+    }
+}
+.input-wrapper select {
+    width: 100%;
+    height: 52px;
+
+    padding: 0 45px 0 50px;
+
+    box-sizing: border-box;
+
+    appearance: auto;
+}
+
+.input-wrapper .input-icon {
+    position: absolute;
+
+    left: 16px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 20px;
+    height: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 5;
+
+    pointer-events: none;
+}
+/* =========================================================
+   CAMPUSFIX - EDIT COMPLAINT FORM
+   ========================================================= */
+
+.edit-complaint-section {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 32px;
+    margin-bottom: 32px;
+    border: 1px solid rgba(80, 160, 255, 0.18);
+    border-radius: 20px;
+    background: rgba(10, 24, 43, 0.92);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+.edit-complaint-section .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.edit-complaint-section .section-header h2 {
+    margin: 0;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+/* Edit form */
+
+.edit-complaint-section form {
+    width: 100%;
+    max-width: 900px;
+}
+
+/* Each field must be vertical */
+
+.edit-complaint-section .form-group {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100%;
+    margin-bottom: 22px !important;
+}
+
+/* Labels */
+
+.edit-complaint-section .form-group label {
+    display: block;
+    width: 100%;
+    margin-bottom: 9px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #dce9ff;
+}
+
+/* Text input */
+
+.edit-complaint-section .form-group input {
+    display: block;
+    width: 100% !important;
+    min-width: 0;
+    height: 48px;
+    box-sizing: border-box;
+    padding: 0 15px;
+    border: 1px solid rgba(100, 160, 230, 0.25);
+    border-radius: 10px;
+    background: #071629;
+    color: #ffffff;
+    font-size: 15px;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+/* Textarea */
+
+.edit-complaint-section .form-group textarea {
+    display: block;
+    width: 100% !important;
+    min-width: 0;
+    min-height: 140px;
+    box-sizing: border-box;
+    padding: 14px 15px;
+    border: 1px solid rgba(100, 160, 230, 0.25);
+    border-radius: 10px;
+    background: #071629;
+    color: #ffffff;
+    font-size: 15px;
+    line-height: 1.5;
+    resize: vertical;
+    outline: none;
+    font-family: inherit;
+    transition: 0.2s ease;
+}
+
+/* Select */
+
+.edit-complaint-section .form-group select {
+    display: block;
+    width: 100% !important;
+    min-width: 0;
+    height: 48px;
+    box-sizing: border-box;
+    padding: 0 15px;
+    border: 1px solid rgba(100, 160, 230, 0.25);
+    border-radius: 10px;
+    background: #071629;
+    color: #ffffff;
+    font-size: 15px;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Focus */
+
+.edit-complaint-section .form-group input:focus,
+.edit-complaint-section .form-group textarea:focus,
+.edit-complaint-section .form-group select:focus {
+    border-color: #2f80ed;
+    box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.12);
+}
+
+/* Placeholder */
+
+.edit-complaint-section input::placeholder,
+.edit-complaint-section textarea::placeholder {
+    color: #7187a3;
+}
+
+/* Existing photo */
+
+.edit-complaint-section img {
+    display: block;
+    width: 220px !important;
+    height: 145px !important;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid rgba(100, 160, 230, 0.2);
+}
+
+/* Existing photo text */
+
+.edit-complaint-section p {
+    color: #a7bad3;
+}
+
+.edit-complaint-section > p {
+    margin-top: 0;
+}
+
+/* Save button */
+
+.edit-complaint-section .primary-button {
+    min-width: 170px;
+    min-height: 48px;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 22px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Cancel button */
+
+.edit-complaint-section .secondary-button {
+    min-width: 100px;
+    min-height: 48px;
+    border: 1px solid rgba(150, 170, 200, 0.3);
+    border-radius: 10px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #dce9ff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.edit-complaint-section .secondary-button:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* Error */
+
+.edit-complaint-section .error-message {
+    color: #ffb4b4;
+    background: rgba(255, 60, 60, 0.08);
+    border: 1px solid rgba(255, 80, 80, 0.2);
+}
+
+/* Success */
+
+.edit-complaint-section .success-message {
+    color: #7ff0ad;
+    background: rgba(50, 220, 130, 0.08);
+    border: 1px solid rgba(50, 220, 130, 0.2);
+}
+
+
+/* =========================================================
+   EDIT / CHANGE BUTTON ON COMPLAINT CARD
+   ========================================================= */
+
+.edit-complaint-button {
+    width: 100%;
+    min-height: 46px;
+    margin-top: 8px;
+    padding: 10px 15px;
+
+    border: 1px solid rgba(70, 150, 255, 0.3);
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #168aad
+    );
+
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+.edit-complaint-button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+}
+
+.edit-complaint-button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   RESPONSIVE EDIT FORM
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .edit-complaint-section {
+        padding: 20px;
+        border-radius: 15px;
+    }
+
+    .edit-complaint-section .section-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .edit-complaint-section form {
+        max-width: 100%;
+    }
+
+    .edit-complaint-section .form-group input,
+    .edit-complaint-section .form-group textarea,
+    .edit-complaint-section .form-group select {
+        width: 100% !important;
+    }
+
+    .edit-complaint-section img {
+        width: 100% !important;
+        max-width: 280px;
+        height: 180px !important;
+    }
+}
+/* =========================================================
+   CAMPUSFIX - TECHNICIAN DASHBOARD
+   PROFESSIONAL UI FIX
+   ========================================================= */
+
+.admin-dashboard,
+.technician-dashboard {
+    min-height: 100vh;
+    background:
+        radial-gradient(
+            circle at 80% 10%,
+            rgba(32, 100, 180, 0.12),
+            transparent 30%
+        ),
+        #07111f;
+    color: #e8f0fb;
+}
+
+
+/* =========================================================
+   TECHNICIAN HEADER
+   ========================================================= */
+
+.technician-header {
+    width: 100%;
+    min-height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 40px;
+    box-sizing: border-box;
+
+    background: rgba(5, 15, 29, 0.96);
+    border-bottom: 1px solid rgba(100, 150, 210, 0.14);
+
+    position: relative;
+    z-index: 5;
+}
+
+.technician-brand {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.technician-brand-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #1597bd
+    );
+
+    font-size: 20px;
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.25);
+}
+
+.technician-brand h1 {
+    margin: 0;
+
+    font-size: 20px;
+    font-weight: 800;
+
+    color: #f5f8ff;
+}
+
+.technician-brand p {
+    margin: 2px 0 0;
+
+    font-size: 11px;
+    color: #7187a3;
+}
+
+
+/* =========================================================
+   TECHNICIAN USER AREA
+   ========================================================= */
+
+.technician-user {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.technician-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.technician-avatar {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #162d50;
+    color: #7eb3ff;
+
+    font-weight: 800;
+}
+
+.technician-profile span {
+    display: block;
+    font-size: 11px;
+    color: #7187a3;
+}
+
+.technician-profile strong {
+    display: block;
+    margin-top: 2px;
+
+    font-size: 14px;
+    color: #eaf2ff;
+}
+
+
+/* =========================================================
+   TECHNICIAN LOGOUT
+   ========================================================= */
+
+.technician-logout {
+    min-height: 40px;
+
+    padding: 0 17px;
+
+    border: 1px solid rgba(255, 90, 90, 0.28);
+    border-radius: 9px;
+
+    background: rgba(255, 70, 70, 0.04);
+
+    color: #ff9c9c;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.technician-logout:hover {
+    background: rgba(255, 70, 70, 0.1);
+    border-color: rgba(255, 90, 90, 0.5);
+}
+
+
+/* =========================================================
+   TECHNICIAN CONTENT
+   ========================================================= */
+
+.technician-content {
+    width: min(1320px, calc(100% - 50px));
+    margin: 0 auto;
+    padding: 35px 0 60px;
+}
+
+
+/* =========================================================
+   TECHNICIAN WELCOME CARD
+   ========================================================= */
+
+.technician-welcome {
+    min-height: 150px;
+
+    padding: 32px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-radius: 20px;
+
+    background:
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(71, 166, 210, 0.22),
+            transparent 25%
+        ),
+        linear-gradient(
+            135deg,
+            #173665,
+            #1c5073
+        );
+
+    border: 1px solid rgba(130, 190, 240, 0.15);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.technician-welcome-label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+
+    color: #a8c8ec;
+}
+
+.technician-welcome h2 {
+    margin: 0;
+
+    font-size: 27px;
+    font-weight: 800;
+
+    color: #ffffff;
+}
+
+.technician-welcome p {
+    margin: 8px 0 0;
+
+    color: #c5d9ef;
+    font-size: 14px;
+}
+
+.technician-welcome-icon {
+    width: 105px;
+    height: 105px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.07);
+
+    font-size: 42px;
+}
+
+
+/* =========================================================
+   TECHNICIAN INFORMATION
+   FIXES:
+   DepartmentMaintenance
+   Phone9876543210
+   AvailabilityAvailable
+   ========================================================= */
+
+.technician-info {
+    margin: 25px 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 15px;
+}
+
+.technician-info-item {
+    min-height: 72px;
+
+    padding: 15px 18px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #0d1b30;
+
+    border: 1px solid rgba(100, 150, 210, 0.16);
+}
+
+.technician-info-label {
+    margin-bottom: 5px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+
+    color: #7088a8;
+}
+
+.technician-info-value {
+    font-size: 15px;
+    font-weight: 700;
+
+    color: #eaf2ff;
+}
+
+
+/* =========================================================
+   AVAILABILITY
+   ========================================================= */
+
+.availability-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    color: #61e69a;
+}
+
+.availability-status::before {
+    content: "";
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #43dc87;
+
+    box-shadow:
+        0 0 0 4px rgba(67, 220, 135, 0.10);
+}
+
+
+/* =========================================================
+   AVAILABILITY BUTTON
+   ========================================================= */
+
+.availability-button {
+    margin-top: 10px;
+
+    min-height: 40px;
+
+    padding: 0 18px;
+
+    border: 1px solid rgba(90, 160, 230, 0.28);
+    border-radius: 9px;
+
+    background: #142b4a;
+
+    color: #9dc8fa;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.availability-button:hover {
+    background: #1b3b64;
+
+    border-color: rgba(90, 160, 230, 0.5);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   STATISTICS
+   ========================================================= */
+
+.technician-stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 15px;
+
+    margin-bottom: 28px;
+}
+
+.technician-stat-card {
+    min-height: 100px;
+
+    padding: 18px;
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    box-sizing: border-box;
+
+    border-radius: 14px;
+
+    background: #0c192c;
+
+    border: 1px solid rgba(100, 150, 210, 0.16);
+
+    transition: 0.2s ease;
+}
+
+.technician-stat-card:hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(80, 150, 240, 0.3);
+}
+
+.technician-stat-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: #162b4e;
+
+    font-size: 20px;
+}
+
+.technician-stat-card span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-size: 12px;
+
+    color: #7188a5;
+}
+
+.technician-stat-card strong {
+    font-size: 24px;
+
+    color: #74a9ff;
+}
+
+
+/* =========================================================
+   ASSIGNED COMPLAINT SECTION
+   ========================================================= */
+
+.technician-section {
+    padding: 27px;
+
+    border-radius: 18px;
+
+    background: #0a1729;
+
+    border: 1px solid rgba(100, 150, 210, 0.15);
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.16);
+}
+
+.technician-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 22px;
+}
+
+.technician-section-header h2 {
+    margin: 0;
+
+    font-size: 21px;
+    font-weight: 800;
+
+    color: #f0f5ff;
+}
+
+.technician-section-header p {
+    margin: 6px 0 0;
+
+    font-size: 13px;
+
+    color: #7289a7;
+}
+
+
+/* =========================================================
+   COMPLAINT CARD
+   ========================================================= */
+
+.technician-complaint-card {
+    padding: 20px;
+
+    margin-bottom: 15px;
+
+    display: grid;
+
+    grid-template-columns: 230px 1fr;
+
+    gap: 22px;
+
+    border-radius: 15px;
+
+    background: #0d1b30;
+
+    border: 1px solid rgba(100, 150, 210, 0.15);
+
+    transition: 0.2s ease;
+}
+
+.technician-complaint-card:hover {
+    border-color: rgba(80, 150, 240, 0.3);
+}
+
+
+/* =========================================================
+   COMPLAINT PHOTO
+   ========================================================= */
+
+.technician-complaint-card img {
+    width: 100%;
+    height: 175px;
+
+    object-fit: cover;
+
+    border-radius: 12px;
+
+    border: 1px solid rgba(100, 150, 210, 0.15);
+}
+
+.technician-no-photo {
+    width: 100%;
+    height: 175px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    border-radius: 12px;
+
+    background: #101f35;
+
+    color: #6e86a3;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   COMPLAINT TITLE
+   ========================================================= */
+
+.technician-complaint-title {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 8px;
+}
+
+.technician-complaint-title h3 {
+    margin: 3px 0 0;
+
+    font-size: 18px;
+    font-weight: 800;
+
+    color: #f1f6ff;
+}
+
+.technician-complaint-id {
+    font-size: 11px;
+    font-weight: 800;
+
+    color: #639bff;
+}
+
+.technician-complaint-description {
+    margin: 10px 0 18px;
+
+    color: #8ea6c4;
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   COMPLAINT DETAILS
+   ========================================================= */
+
+.technician-details-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+}
+
+.technician-detail-item {
+    padding: 11px 13px;
+
+    border-radius: 9px;
+
+    background: #101f35;
+
+    border: 1px solid rgba(100, 150, 210, 0.11);
+}
+
+.technician-detail-item strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    color: #6f89aa;
+
+    letter-spacing: 0.5px;
+}
+
+.technician-detail-item span {
+    font-size: 13px;
+
+    color: #d4e1f2;
+}
+
+
+/* =========================================================
+   STATUS BADGES
+   ========================================================= */
+
+.technician-status-badge {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 85px;
+
+    padding: 7px 12px;
+
+    border-radius: 8px;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.technician-status-pending {
+    color: #ffc857;
+
+    background: rgba(255, 190, 50, 0.10);
+}
+
+.technician-status-in_progress {
+    color: #73b5ff;
+
+    background: rgba(70, 150, 255, 0.10);
+}
+
+.technician-status-resolved {
+    color: #5de394;
+
+    background: rgba(50, 220, 130, 0.10);
+}
+
+
+/* =========================================================
+   RESOLVED COMPLAINT
+   ========================================================= */
+
+.technician-resolved-card {
+    opacity: 0.88;
+
+    border-color:
+        rgba(60, 220, 130, 0.16);
+}
+
+.technician-resolved-message {
+    margin-top: 15px;
+
+    padding: 11px 14px;
+
+    border-radius: 9px;
+
+    background: rgba(50, 220, 130, 0.06);
+
+    border: 1px solid rgba(50, 220, 130, 0.14);
+
+    color: #67df99;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   STATUS UPDATE AREA
+   ========================================================= */
+
+.technician-controls {
+    margin-top: 18px;
+
+    padding-top: 18px;
+
+    display: flex;
+    align-items: flex-end;
+
+    gap: 15px;
+
+    border-top: 1px solid rgba(100, 150, 210, 0.10);
+}
+
+.technician-control-group {
+    flex: 1;
+}
+
+.technician-control-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    color: #7188a5;
+}
+
+.technician-control-group select {
+    width: 100%;
+
+    min-height: 44px;
+
+    padding: 0 13px;
+
+    box-sizing: border-box;
+
+    border-radius: 9px;
+
+    border: 1px solid rgba(100, 150, 210, 0.2);
+
+    background: #101f35;
+
+    color: #eaf2ff;
+
+    outline: none;
+
+    cursor: pointer;
+}
+
+.technician-control-group select:focus {
+    border-color: #3b82f6;
+
+    box-shadow:
+        0 0 0 3px rgba(59, 130, 246, 0.10);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .technician-content {
+        width: calc(100% - 30px);
+    }
+
+    .technician-header {
+        padding: 0 20px;
+    }
+
+    .technician-info {
+        grid-template-columns: 1fr;
+    }
+
+    .technician-stats {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .technician-complaint-card {
+        grid-template-columns: 1fr;
+    }
+
+    .technician-complaint-card img,
+    .technician-no-photo {
+        height: 220px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .technician-header {
+        min-height: 70px;
+    }
+
+    .technician-profile {
+        display: none;
+    }
+
+    .technician-welcome {
+        padding: 23px;
+
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+    .technician-welcome h2 {
+        font-size: 22px;
+    }
+
+    .technician-welcome-icon {
+        display: none;
+    }
+
+    .technician-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .technician-section {
+        padding: 18px;
+    }
+
+    .technician-section-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .technician-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .technician-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+/* =========================================================
+   TECHNICIAN STAT CARDS - ICON FIX
+   ========================================================= */
+
+.technician-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin: 25px 0 30px;
+}
+
+.technician-stat-card {
+    min-height: 125px;
+    padding: 22px 25px;
+
+    display: flex !important;
+    align-items: center !important;
+    gap: 20px;
+
+    box-sizing: border-box;
+
+    background: #0d192c !important;
+
+    border: 1px solid #203553;
+    border-radius: 18px;
+
+    transition: all 0.25s ease;
+}
+
+.technician-stat-card:hover {
+    transform: translateY(-3px);
+    border-color: #315582;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================================================
+   ICON BOX
+   ========================================================= */
+
+.technician-stat-card .technician-stat-icon {
+    width: 72px !important;
+    height: 72px !important;
+
+    min-width: 72px !important;
+    min-height: 72px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    box-sizing: border-box;
+
+    border-radius: 18px;
+
+    background: #1a2d52 !important;
+
+    font-size: 28px !important;
+    line-height: 1 !important;
+
+    text-align: center !important;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   STAT TEXT
+   ========================================================= */
+
+.technician-stat-card > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+}
+
+.technician-stat-card p {
+    margin: 0 0 7px !important;
+
+    color: #8ba3c2 !important;
+
+    font-size: 15px !important;
+    font-weight: 600 !important;
+}
+
+.technician-stat-card strong {
+    display: block;
+
+    margin: 0 !important;
+
+    color: #6fa3ff !important;
+
+    font-size: 34px !important;
+    font-weight: 800 !important;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .technician-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .technician-stats {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .technician-stat-card {
+        min-height: 105px;
+        padding: 18px;
+    }
+
+    .technician-stat-card .technician-stat-icon {
+        width: 60px !important;
+        height: 60px !important;
+
+        min-width: 60px !important;
+        min-height: 60px !important;
+
+        font-size: 24px !important;
+    }
+
+    .technician-stat-card strong {
+        font-size: 28px !important;
+    }
+}
+/* =========================================================
+   CAMPUSFIX - NOTIFICATION BELL FIX
+   ========================================================= */
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.user-info > .notification-bell,
+.user-info > div:has(.notification-bell) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Bell button */
+.notification-bell {
+    position: relative !important;
+
+    width: 42px !important;
+    height: 42px !important;
+
+    min-width: 42px !important;
+    min-height: 42px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border-radius: 50% !important;
+
+    background: #f5f7fb !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+
+    color: #f5b400 !important;
+
+    cursor: pointer;
+
+    box-shadow: none !important;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.notification-bell:hover {
+    transform: translateY(-1px);
+    background: #ffffff !important;
+}
+
+.notification-bell svg {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+/* Notification count */
+.notification-bell .notification-count,
+.notification-bell .badge,
+.notification-bell span {
+    box-sizing: border-box;
+}
+
+/* If the unread count is a small badge */
+.notification-bell .notification-count {
+    position: absolute !important;
+
+    top: -3px !important;
+    right: -3px !important;
+
+    min-width: 17px !important;
+    height: 17px !important;
+
+    padding: 0 4px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border-radius: 50% !important;
+
+    background: #ef4444 !important;
+    color: white !important;
+
+    border: 2px solid #07111f !important;
+
+    font-size: 9px !important;
+    font-weight: 800 !important;
+}
+
+/* =========================================================
+   STUDENT HEADER
+   ========================================================= */
+
+.dashboard-header {
+    min-height: 84px;
+    box-sizing: border-box;
+}
+
+.dashboard-header .user-info {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* Welcome text */
+.dashboard-header .user-info > span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+}
+
+/* Logout */
+.dashboard-header .user-info > button {
+    min-height: 40px;
+    padding: 0 16px;
+
+    border-radius: 9px;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+/* =========================================================
+   CAMPUSFIX DASHBOARD - COMMON PROFESSIONAL THEME
+   Admin + Technician + Student
+   ========================================================= */
+
+:root {
+  --cf-bg: #071525;
+  --cf-bg-2: #0b1c2d;
+  --cf-card: #142c49;
+  --cf-card-light: #1b3859;
+  --cf-border: rgba(130, 175, 220, 0.25);
+  --cf-text: #f3f7fc;
+  --cf-muted: #8da2bc;
+  --cf-blue: #4b91c9;
+  --cf-blue-light: #6ba9d8;
+  --cf-green: #4ade80;
+  --cf-yellow: #facc15;
+  --cf-red: #ff6b6b;
+}
+
+
+/* =========================================================
+   GLOBAL DASHBOARD
+   ========================================================= */
+
+.admin-dashboard,
+.technician-dashboard,
+.student-dashboard {
+  min-height: 100vh;
+  width: 100%;
+  background:
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(53, 107, 151, 0.18),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #071525 0%,
+      #0a1a2b 50%,
+      #0d2135 100%
+    );
+  color: var(--cf-text);
+  box-sizing: border-box;
+}
+
+.admin-dashboard *,
+.technician-dashboard *,
+.student-dashboard * {
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   COMMON DASHBOARD HEADER
+   ========================================================= */
+
+.admin-header,
+.technician-header,
+.student-header {
+  width: 100%;
+  min-height: 82px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 18px 36px;
+
+  background: rgba(5, 17, 31, 0.92);
+  border-bottom: 1px solid rgba(117, 161, 201, 0.16);
+
+  position: relative;
+  z-index: 10;
+}
+
+
+/* Header left side */
+
+.admin-brand,
+.technician-brand,
+.student-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+
+/* Header right side */
+
+.admin-profile,
+.technician-profile,
+.student-profile {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+
+/* =========================================================
+   WELCOME TEXT
+   ========================================================= */
+
+.admin-welcome,
+.technician-welcome,
+.student-welcome {
+  color: var(--cf-muted);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.admin-welcome strong,
+.technician-welcome strong,
+.student-welcome strong {
+  color: #f4f7fb;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   NOTIFICATION BELL
+   ========================================================= */
+
+.notification-bell {
+  width: 48px;
+  height: 48px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+  color: #f4b400;
+
+  border: 1px solid rgba(255, 255, 255, 0.7);
+
+  font-size: 22px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.notification-bell:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================================
+   LOGOUT BUTTON
+   ========================================================= */
+
+.admin-profile button,
+.technician-profile button,
+.student-profile button,
+.logout-btn {
+  min-width: 112px;
+  height: 48px;
+
+  padding: 0 22px;
+
+  border-radius: 12px;
+
+  background: rgba(16, 30, 48, 0.9);
+
+  border: 1px solid rgba(255, 107, 107, 0.45);
+
+  color: #ff7777;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.admin-profile button:hover,
+.technician-profile button:hover,
+.student-profile button:hover,
+.logout-btn:hover {
+  background: rgba(255, 107, 107, 0.1);
+  border-color: #ff7777;
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   DASHBOARD CONTENT
+   ========================================================= */
+
+.admin-content,
+.technician-content,
+.student-content {
+  width: min(1400px, calc(100% - 48px));
+  margin: 0 auto;
+
+  padding: 36px 0 60px;
+}
+
+
+/* =========================================================
+   ADMIN - STATISTICS
+   ========================================================= */
+
+.admin-stats,
+.stats-grid,
+.admin-stat-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 20px;
+
+  width: 100%;
+
+  margin-bottom: 28px;
+}
+
+
+.admin-stat-card,
+.stat-card {
+  min-height: 150px;
+
+  padding: 24px;
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(28, 55, 87, 0.98),
+      rgba(17, 39, 63, 0.98)
+    );
+
+  border: 1px solid var(--cf-border);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  position: relative;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.16);
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.admin-stat-card:hover,
+.stat-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(107, 169, 216, 0.45);
+}
+
+
+/* Stat title */
+
+.admin-stat-card h3,
+.admin-stat-card .stat-title,
+.stat-card h3,
+.stat-card .stat-title {
+  margin: 0 0 10px;
+
+  color: #8fa5be;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+
+/* Stat number */
+
+.admin-stat-card .stat-number,
+.admin-stat-card .number,
+.stat-card .stat-number,
+.stat-card .number {
+  margin: 0;
+
+  color: #f4f7fb;
+
+  font-size: 42px;
+  line-height: 1;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   REFRESH BUTTON
+   ========================================================= */
+
+/* Fix the ugly default browser Refresh button */
+
+.admin-stat-card button,
+.analytics-card button,
+.refresh-btn {
+  width: fit-content;
+
+  min-width: 100px;
+  height: 38px;
+
+  margin-top: 14px;
+
+  padding: 0 18px;
+
+  border: 1px solid rgba(107, 169, 216, 0.45);
+  border-radius: 9px;
+
+  background: #28577f;
+
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.admin-stat-card button:hover,
+.analytics-card button:hover,
+.refresh-btn:hover {
+  background: #3674a4;
+  border-color: #6ba9d8;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   ANALYTICS
+   ========================================================= */
+
+.analytics-dashboard {
+  width: 100%;
+  margin-top: 28px;
+}
+
+.analytics-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 18px;
+}
+
+.analytics-card {
+  background: rgba(20, 44, 73, 0.95);
+
+  border: 1px solid var(--cf-border);
+
+  border-radius: 16px;
+
+  padding: 22px;
+
+  min-height: 130px;
+}
+
+
+/* =========================================================
+   TECHNICIAN DASHBOARD
+   ========================================================= */
+
+.technician-content {
+  max-width: 1250px;
+}
+
+
+/* Technician welcome section */
+
+.technician-welcome {
+  margin-bottom: 26px;
+
+  padding: 28px 30px;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #1b456a,
+      #24577c
+    );
+
+  border: 1px solid rgba(139, 185, 220, 0.25);
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+
+/* Decorative circles */
+
+.technician-welcome::before,
+.technician-welcome::after {
+  content: "";
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.07);
+
+  pointer-events: none;
+}
+
+.technician-welcome::before {
+  width: 220px;
+  height: 220px;
+
+  right: -90px;
+  top: -120px;
+}
+
+.technician-welcome::after {
+  width: 160px;
+  height: 160px;
+
+  left: -80px;
+  bottom: -110px;
+}
+
+
+/* Technician information */
+
+.technician-info {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 30px;
+}
+
+
+/* Specialization box */
+
+.technician-specialization,
+.specialization-card {
+  min-width: 260px;
+
+  padding: 18px 24px;
+
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  border: 1px solid rgba(209, 230, 247, 0.35);
+}
+
+.technician-specialization h4,
+.specialization-card h4 {
+  margin: 0 0 8px;
+
+  color: #b8cce0;
+
+  font-size: 13px;
+
+  letter-spacing: 1px;
+}
+
+.technician-specialization strong,
+.specialization-card strong {
+  color: #ffffff;
+
+  font-size: 20px;
+}
+
+
+/* =========================================================
+   REMOVE HUGE TECHNICIAN EMOJI / WRENCH
+   ========================================================= */
+
+/*
+   If your JSX currently has:
+   <div className="technician-icon">🔧</div>
+
+   this makes it small and professional.
+*/
+
+.technician-icon {
+  width: 64px;
+  height: 64px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  color: #dbe9f7;
+
+  font-size: 30px;
+
+  flex-shrink: 0;
+}
+
+
+/* If the icon is inside the specialization section */
+
+.specialization-icon {
+  width: 34px;
+  height: 34px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 20px;
+
+  color: #dceafa;
+}
+
+
+/* =========================================================
+   TECHNICIAN STATS
+   ========================================================= */
+
+.technician-stats {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 18px;
+
+  margin: 25px 0 32px;
+}
+
+
+.technician-stat-card {
+  min-height: 135px;
+
+  padding: 22px;
+
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #152f4d,
+      #102741
+    );
+
+  border: 1px solid rgba(123, 171, 211, 0.22);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+.technician-stat-card h3 {
+  margin: 0 0 8px;
+
+  color: #91a8c0;
+
+  font-size: 14px;
+}
+
+.technician-stat-card .value {
+  color: #ffffff;
+
+  font-size: 36px;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   TECHNICIAN COMPLAINT SECTION
+   ========================================================= */
+
+.technician-section {
+  margin-top: 30px;
+}
+
+.technician-section h2 {
+  margin-bottom: 18px;
+
+  color: #f3f7fc;
+
+  font-size: 22px;
+}
+
+
+.technician-complaint-card {
+  padding: 22px;
+
+  margin-bottom: 16px;
+
+  border-radius: 16px;
+
+  background: rgba(16, 37, 60, 0.95);
+
+  border: 1px solid rgba(124, 168, 204, 0.2);
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.technician-complaint-card:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(107, 169, 216, 0.4);
+}
+
+
+/* =========================================================
+   STATUS BUTTONS / SELECT
+   ========================================================= */
+
+.technician-controls select,
+.admin-controls select,
+.status-select {
+  height: 42px;
+
+  padding: 0 14px;
+
+  border-radius: 9px;
+
+  border: 1px solid rgba(116, 164, 204, 0.35);
+
+  background: #102842;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  outline: none;
+
+  cursor: pointer;
+}
+
+.technician-controls select:focus,
+.admin-controls select:focus,
+.status-select:focus {
+  border-color: #5f9bc8;
+}
+
+
+/* =========================================================
+   STUDENT DASHBOARD
+   ========================================================= */
+
+.student-content {
+  max-width: 1250px;
+}
+
+
+/* Student top section */
+
+.student-welcome-section,
+.student-welcome {
+  margin-bottom: 26px;
+}
+
+
+/* Student complaint cards */
+
+.student-complaint-card,
+.complaint-card {
+  background:
+    linear-gradient(
+      145deg,
+      #142e4b,
+      #102740
+    );
+
+  border: 1px solid rgba(124, 170, 207, 0.22);
+
+  border-radius: 16px;
+
+  padding: 22px;
+
+  margin-bottom: 16px;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.student-complaint-card:hover,
+.complaint-card:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(107, 169, 216, 0.4);
+}
+
+
+/* =========================================================
+   STUDENT ACTION BUTTONS
+   ========================================================= */
+
+.student-actions,
+.complaint-actions {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-top: 18px;
+}
+
+
+.student-actions button,
+.complaint-actions button {
+  height: 40px;
+
+  padding: 0 16px;
+
+  border-radius: 9px;
+
+  border: 1px solid rgba(115, 165, 205, 0.35);
+
+  background: #1d466b;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.student-actions button:hover,
+.complaint-actions button:hover {
+  background: #2b628e;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+  .admin-stats,
+  .stats-grid,
+  .admin-stat-grid,
+  .technician-stats,
+  .analytics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .admin-header,
+  .technician-header,
+  .student-header {
+    min-height: 72px;
+
+    padding: 14px 18px;
+  }
+
+  .admin-content,
+  .technician-content,
+  .student-content {
+    width: calc(100% - 28px);
+
+    padding-top: 24px;
+  }
+
+  .admin-stats,
+  .stats-grid,
+  .admin-stat-grid,
+  .technician-stats,
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .technician-info {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .technician-specialization,
+  .specialization-card {
+    width: 100%;
+  }
+
+  .admin-welcome,
+  .technician-welcome,
+  .student-welcome {
+    font-size: 15px;
+  }
+
+  .notification-bell {
+    width: 42px;
+    height: 42px;
+
+    font-size: 19px;
+  }
+
+  .admin-profile button,
+  .technician-profile button,
+  .student-profile button,
+  .logout-btn {
+    min-width: 90px;
+
+    height: 42px;
+
+    padding: 0 15px;
+
+    font-size: 14px;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .admin-header,
+  .technician-header,
+  .student-header {
+    padding: 12px;
+  }
+
+  .admin-profile,
+  .technician-profile,
+  .student-profile {
+    gap: 7px;
+  }
+
+  .notification-bell {
+    width: 38px;
+    height: 38px;
+  }
+
+  .admin-profile button,
+  .technician-profile button,
+  .student-profile button,
+  .logout-btn {
+    min-width: auto;
+
+    padding: 0 12px;
+  }
+
+}
+/* ================================
+   REFRESH BUTTON
+================================ */
+
+.refresh-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 12px;
+    padding: 10px 22px;
+
+    border: 1px solid #4f7cff;
+    border-radius: 10px;
+
+    background: linear-gradient(135deg, #315fcf, #4f7cff);
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.refresh-btn:hover {
+    background: linear-gradient(135deg, #4f7cff, #638dff);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(79, 124, 255, 0.30);
+}
+
+.refresh-btn:active {
+    transform: translateY(0);
+}
+
+.refresh-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+/* =========================================================
+   CAMPUSFIX PREMIUM VISUAL ENHANCEMENT
+   Deep Indigo + Electric Violet + Cyan
+   Appended overrides: existing class names preserved.
+   ========================================================= */
+
+:root {
+    --primary: #4f46e5;
+    --primary-dark: #3730a3;
+    --primary-light: #eef2ff;
+    --violet: #7c3aed;
+    --violet-dark: #5b21b6;
+    --violet-light: #f5f3ff;
+    --cyan: #06b6d4;
+    --cyan-dark: #0891b2;
+    --cyan-light: #ecfeff;
+    --success: #10b981;
+    --success-dark: #047857;
+    --success-light: #ecfdf5;
+    --warning: #f59e0b;
+    --warning-dark: #b45309;
+    --warning-light: #fffbeb;
+    --danger: #f43f5e;
+    --danger-dark: #be123c;
+    --danger-light: #fff1f2;
+    --orange: #f97316;
+    --orange-light: #fff7ed;
+    --text: #172033;
+    --text-secondary: #526078;
+    --muted: #7a879c;
+    --page: #f3f6fb;
+    --card: rgba(255, 255, 255, 0.96);
+    --border: #e2e8f0;
+    --border-dark: #cbd5e1;
+    --shadow-sm: 0 4px 14px rgba(30, 41, 59, 0.055);
+    --shadow: 0 12px 30px rgba(30, 41, 59, 0.085);
+    --shadow-lg: 0 24px 60px rgba(30, 41, 59, 0.13);
+    --shadow-color: rgba(79, 70, 229, 0.16);
+    --radius-sm: 10px;
+    --radius: 16px;
+    --radius-lg: 22px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--page);
+    color: var(--text);
+}
+
+button,
+input,
+textarea,
+select {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 3px solid rgba(6, 182, 212, 0.24);
+    outline-offset: 2px;
+}
+
+::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: #eaf0f7;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #818cf8, #22d3ee);
+    border: 2px solid #eaf0f7;
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #6366f1, #06b6d4);
+}
+
+.dashboard,
+.technician-dashboard,
+.admin-dashboard,
+.complaint-page {
+    background:
+        radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.08), transparent 26%),
+        radial-gradient(circle at 100% 8%, rgba(6, 182, 212, 0.07), transparent 24%),
+        linear-gradient(180deg, #f8faff 0%, #f3f6fb 100%);
+}
+
+/* ------------------------- AUTH ------------------------- */
+.auth-container {
+    background:
+        radial-gradient(circle at 12% 18%, rgba(79, 70, 229, 0.25), transparent 28%),
+        radial-gradient(circle at 88% 82%, rgba(6, 182, 212, 0.20), transparent 30%),
+        radial-gradient(circle at 70% 15%, rgba(124, 58, 237, 0.16), transparent 24%),
+        linear-gradient(135deg, #eef2ff 0%, #f8fbff 46%, #ecfeff 100%);
+}
+
+.auth-container::before {
+    width: 480px;
+    height: 480px;
+    top: -260px;
+    right: -160px;
+    background: radial-gradient(circle, rgba(79, 70, 229, 0.16), rgba(79, 70, 229, 0));
+    animation: floatOrb 9s ease-in-out infinite alternate;
+}
+
+.auth-container::after {
+    width: 420px;
+    height: 420px;
+    bottom: -230px;
+    left: -150px;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.14), rgba(6, 182, 212, 0));
+    animation: floatOrb 11s ease-in-out infinite alternate-reverse;
+}
+
+.auth-card {
+    max-width: 455px;
+    padding: 44px 43px 34px;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.86);
+    border-radius: 26px;
+    box-shadow: 0 30px 80px rgba(49, 46, 129, 0.16), 0 5px 22px rgba(15, 23, 42, 0.06);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+}
+
+.auth-logo {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #4338ca 0%, #7c3aed 55%, #06b6d4 100%);
+    box-shadow: 0 14px 30px rgba(79, 70, 229, 0.28);
+}
+
+.auth-title,
+.auth-card > h1 {
+    background: linear-gradient(100deg, #312e81 0%, #4f46e5 42%, #7c3aed 72%, #0891b2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.auth-card form > input,
+.auth-card form > select,
+.auth-card form > textarea,
+.auth-field input,
+.auth-field select,
+.auth-field textarea,
+.input-wrapper input {
+    border-color: #d8e0ec;
+    background: rgba(248, 250, 252, 0.92);
+    border-radius: 12px;
+}
+
+.auth-card form > input:hover,
+.auth-card form > select:hover,
+.auth-field input:hover,
+.auth-field select:hover,
+.input-wrapper input:hover {
+    border-color: #b9c5d8;
+}
+
+.auth-card form > input:focus,
+.auth-card form > select:focus,
+.auth-card form > textarea:focus,
+.auth-field input:focus,
+.auth-field select:focus,
+.auth-field textarea:focus,
+.input-wrapper input:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.11), 0 5px 16px rgba(79, 70, 229, 0.06);
+}
+
+.auth-card form > button[type="submit"],
+.auth-submit-button {
+    min-height: 52px;
+    border-radius: 12px;
+    background: linear-gradient(110deg, #4338ca 0%, #4f46e5 40%, #7c3aed 72%, #0891b2 100%);
+    background-size: 180% 100%;
+    box-shadow: 0 10px 25px rgba(79, 70, 229, 0.24);
+    transition: transform .22s ease, box-shadow .22s ease, background-position .35s ease;
+}
+
+.auth-card form > button[type="submit"]:hover:not(:disabled),
+.auth-submit-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    background-position: 100% 0;
+    box-shadow: 0 15px 30px rgba(79, 70, 229, 0.30);
+}
+
+/* ------------------------- HEADER ------------------------- */
+.dashboard-header,
+.technician-header,
+.admin-header {
+    min-height: 78px;
+    padding: 13px clamp(18px, 4vw, 48px);
+    background: rgba(255, 255, 255, 0.82);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+    box-shadow: 0 8px 30px rgba(30, 41, 59, 0.055);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.dashboard-header h1,
+.technician-header h1,
+.admin-header h1 {
+    background: linear-gradient(90deg, #1e1b4b, #4338ca 52%, #0891b2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.dashboard-header h1::before,
+.technician-header h1::before,
+.admin-header h1::before {
+    color: #06b6d4;
+    text-shadow: 0 0 12px rgba(6, 182, 212, 0.45);
+}
+
+/* ------------------------- CONTENT ------------------------- */
+.dashboard-content,
+.technician-content {
+    width: min(1320px, calc(100% - 48px));
+    padding: 34px 0 70px;
+}
+
+.admin-content {
+    width: min(1440px, calc(100% - 48px));
+    padding: 34px 0 70px;
+}
+
+/* ------------------------- WELCOME ------------------------- */
+.welcome-card,
+.technician-welcome,
+.admin-welcome {
+    margin-bottom: 26px;
+    padding: 32px 34px;
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at 90% 15%, rgba(34, 211, 238, 0.24), transparent 24%),
+        radial-gradient(circle at 72% 100%, rgba(124, 58, 237, 0.26), transparent 30%),
+        linear-gradient(120deg, #312e81 0%, #4338ca 40%, #6366f1 68%, #0891b2 100%);
+    box-shadow: 0 20px 45px rgba(67, 56, 202, 0.20);
+}
+
+.welcome-card::after,
+.technician-welcome::after,
+.admin-welcome::after {
+    width: 280px;
+    height: 280px;
+    right: -90px;
+    top: -140px;
+    background: rgba(255, 255, 255, 0.11);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.welcome-card::before,
+.technician-welcome::before,
+.admin-welcome::before {
+    width: 180px;
+    height: 180px;
+    right: 150px;
+    bottom: -115px;
+    background: rgba(34, 211, 238, 0.08);
+}
+
+/* ------------------------- STAT CARDS ------------------------- */
+.dashboard-grid,
+.technician-stats,
+.admin-stats {
+    gap: 18px;
+}
+
+.stat-card,
+.technician-stat,
+.admin-stat-card {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(226, 232, 240, 0.92);
+    box-shadow: var(--shadow-sm);
+    border-radius: 17px;
+}
+
+.stat-card:hover,
+.technician-stat:hover,
+.admin-stat-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(129, 140, 248, 0.42);
+    box-shadow: 0 16px 34px rgba(30, 41, 59, 0.10);
+}
+
+.stat-card::after {
+    width: 105px;
+    height: 105px;
+    right: -36px;
+    top: -36px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.14), rgba(99, 102, 241, 0));
+}
+
+.stat-card p {
+    color: #4f46e5;
+}
+
+/* ------------------------- SECTION CARDS ------------------------- */
+.complaints-section,
+.technician-section,
+.analytics-section,
+.admin-section {
+    padding: 29px;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-radius: 21px;
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(10px);
+}
+
+.complaints-section:hover,
+.technician-section:hover,
+.analytics-section:hover,
+.admin-section:hover {
+    border-color: rgba(165, 180, 252, 0.55);
+}
+
+.section-header h2,
+.technician-section-header h2,
+.analytics-header h2,
+.admin-section-header h2 {
+    letter-spacing: -.45px;
+}
+
+.section-label,
+.analytics-label {
+    color: #4f46e5;
+}
+
+/* ------------------------- BUTTON SYSTEM ------------------------- */
+.primary-button,
+.camera-button,
+.submit-button,
+.admin-primary-button,
+.admin-action-button {
+    background: linear-gradient(110deg, #4338ca, #4f46e5 42%, #7c3aed 75%, #0891b2);
+    background-size: 180% 100%;
+    border-radius: 11px;
+    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.18);
+    transition: transform .22s ease, box-shadow .22s ease, background-position .35s ease;
+}
+
+.primary-button:hover,
+.camera-button:hover,
+.submit-button:hover:not(:disabled),
+.admin-primary-button:hover,
+.admin-action-button:hover {
+    transform: translateY(-2px);
+    background-position: 100% 0;
+    box-shadow: 0 13px 26px rgba(79, 70, 229, 0.25);
+}
+
+.primary-button:active,
+.camera-button:active,
+.submit-button:active:not(:disabled),
+.admin-primary-button:active,
+.admin-action-button:active {
+    transform: translateY(0);
+}
+
+/* ------------------------- COMPLAINT CARDS ------------------------- */
+.complaint-card,
+.technician-complaint-card,
+.admin-complaint-card {
+    padding: 19px;
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid #e3e8f1;
+    border-radius: 17px;
+    box-shadow: 0 2px 10px rgba(30, 41, 59, 0.035);
+}
+
+.complaint-card:hover,
+.technician-complaint-card:hover,
+.admin-complaint-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(99, 102, 241, 0.28);
+    box-shadow: 0 15px 32px rgba(30, 41, 59, 0.09);
+}
+
+.complaint-image,
+.no-photo,
+.technician-photo img,
+.technician-no-photo,
+.admin-photo img,
+.admin-no-photo {
+    border-radius: 14px;
+}
+
+.complaint-image {
+    border: 1px solid #dce4ef;
+    box-shadow: 0 5px 15px rgba(30, 41, 59, 0.07);
+}
+
+.complaint-card:hover .complaint-image {
+    transform: scale(1.02);
+}
+
+.complaint-details h3,
+.technician-complaint-details h3,
+.admin-complaint-details h3 {
+    color: #172033;
+}
+
+/* ------------------------- STATUS / BADGES ------------------------- */
+.complaint-meta span,
+.status-badge,
+.technician-status,
+.role-tag,
+.specialization-tag {
+    border: 1px solid transparent;
+    letter-spacing: .2px;
+}
+
+.category {
+    background: #eef2ff;
+    color: #4338ca;
+    border-color: #dfe4ff;
+}
+
+.priority {
+    background: #fffbeb;
+    color: #b45309;
+    border-color: #fde7a7;
+}
+
+.technician {
+    background: #ecfeff !important;
+    color: #0e7490 !important;
+    border-color: #c7f5fb !important;
+}
+
+.status,
+.status-resolved {
+    background: #ecfdf5;
+    color: #047857;
+    border-color: #b8f0d9;
+}
+
+.status-pending {
+    background: #fffbeb;
+    color: #b45309;
+    border-color: #fde7a7;
+}
+
+.status-in_progress {
+    background: #eef2ff;
+    color: #4338ca;
+    border-color: #d9ddff;
+}
+
+/* ------------------------- FORM / CAMERA ------------------------- */
+.complaint-form-card {
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.91);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-radius: 25px;
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(14px);
+}
+
+.complaint-form-card input,
+.complaint-form-card textarea,
+.camera-select,
+.technician-actions select,
+.admin-controls select {
+    border-color: #d8e0ec;
+    background: #f9fbfe;
+    border-radius: 11px;
+}
+
+.complaint-form-card input:focus,
+.complaint-form-card textarea:focus,
+.camera-select:focus,
+.technician-actions select:focus,
+.admin-controls select:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.10);
+}
+
+.camera-section {
+    background:
+        radial-gradient(circle at 10% 0%, rgba(99, 102, 241, 0.12), transparent 30%),
+        radial-gradient(circle at 90% 100%, rgba(6, 182, 212, 0.10), transparent 30%),
+        linear-gradient(135deg, #f5f7ff, #f3fcff);
+    border: 1px solid #dce4ff;
+    border-radius: 19px;
+}
+
+.camera-video {
+    border: 3px solid rgba(255, 255, 255, 0.95);
+    box-shadow: 0 18px 35px rgba(15, 23, 42, 0.16);
+}
+
+.photo-preview img {
+    border: 1px solid #dbe3ee;
+    box-shadow: 0 10px 24px rgba(30, 41, 59, 0.08);
+}
+
+/* ------------------------- TECHNICIAN ------------------------- */
+.specialization-card {
+    border: 1px solid rgba(103, 232, 249, 0.30);
+    background: linear-gradient(135deg, rgba(255,255,255,.14), rgba(34,211,238,.10));
+    box-shadow: 0 10px 24px rgba(6, 182, 212, 0.08);
+}
+
+.stat-icon {
+    background: linear-gradient(135deg, #eef2ff, #ecfeff);
+    color: #4f46e5;
+}
+
+.technician-details-grid div,
+.admin-details-grid span {
+    background: linear-gradient(135deg, #f8fafc, #f5f7ff);
+    border-color: #e7ebf3;
+}
+
+.technician-status {
+    background: #fffbeb;
+    color: #b45309;
+    border-color: #fde7a7;
+}
+
+/* ------------------------- ADMIN ------------------------- */
+.admin-brand-icon,
+.admin-avatar {
+    background: linear-gradient(135deg, #312e81, #4f46e5 48%, #7c3aed 78%, #06b6d4);
+    box-shadow: 0 9px 20px rgba(79, 70, 229, 0.22);
+}
+
+.admin-stat-icon.blue {
+    background: #eef2ff;
+    color: #4f46e5;
+}
+
+.admin-stat-icon.orange {
+    background: #fff7ed;
+    color: #ea580c;
+}
+
+.admin-stat-icon.purple {
+    background: #f5f3ff;
+    color: #7c3aed;
+}
+
+.admin-stat-icon.green {
+    background: #ecfdf5;
+    color: #059669;
+}
+
+.request-card:hover {
+    border-color: rgba(99, 102, 241, 0.25);
+}
+
+.request-user-icon {
+    background: linear-gradient(135deg, #eef2ff, #f5f3ff);
+    color: #4f46e5;
+}
+
+.approve-button {
+    background: #ecfdf5;
+    color: #047857;
+    border: 1px solid #b8f0d9;
+}
+
+.reject-button {
+    background: #fff1f2;
+    color: #be123c;
+    border: 1px solid #fecdd3;
+}
+
+.approve-button:hover,
+.reject-button:hover {
+    transform: translateY(-2px);
+    filter: none;
+}
+
+/* ------------------------- ANALYTICS ------------------------- */
+.analytics-total {
+    background: linear-gradient(135deg, #eef2ff, #f5f3ff, #ecfeff);
+    border-color: #dce2ff;
+    box-shadow: 0 7px 20px rgba(79, 70, 229, 0.06);
+}
+
+.analytics-total strong {
+    background: linear-gradient(90deg, #4338ca, #7c3aed, #0891b2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ------------------------- EMPTY / MESSAGES ------------------------- */
+.empty-state,
+.technician-empty {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.07), transparent 40%),
+        linear-gradient(135deg, #fbfcff, #f7fbff);
+    border-color: #d9e1ed;
+}
+
+.empty-state-icon {
+    background: linear-gradient(135deg, #eef2ff, #ecfeff);
+    color: #4f46e5;
+    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.08);
+}
+
+.empty-state-button {
+    background: linear-gradient(110deg, #4338ca, #4f46e5, #7c3aed, #0891b2);
+    background-size: 180% 100%;
+    transition: transform .2s ease, background-position .3s ease, box-shadow .2s ease;
+}
+
+.empty-state-button:hover {
+    transform: translateY(-2px);
+    background-position: 100% 0;
+    box-shadow: 0 10px 22px rgba(79, 70, 229, 0.20);
+}
+
+.auth-message,
+.message.success,
+.complaint-message,
+.technician-message,
+.admin-message {
+    background: linear-gradient(135deg, #ecfdf5, #f0fdf4);
+    border-color: #b8f0d9;
+    color: #047857;
+}
+
+.auth-error,
+.message.error {
+    background: linear-gradient(135deg, #fff1f2, #fff7f8);
+    border-color: #fecdd3;
+    color: #be123c;
+}
+
+/* ------------------------- MICRO INTERACTIONS ------------------------- */
+@keyframes floatOrb {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to { transform: translate3d(-12px, 10px, 0) scale(1.04); }
+}
+
+@keyframes softPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0); }
+    50% { box-shadow: 0 0 0 5px rgba(6, 182, 212, 0.06); }
+}
+
+.auth-logo,
+.admin-brand-icon {
+    animation: softPulse 3.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ------------------------- RESPONSIVE ------------------------- */
+@media (max-width: 1100px) {
+    .dashboard-grid,
+    .technician-stats,
+    .admin-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .dashboard-content,
+    .technician-content,
+    .admin-content {
+        width: min(100% - 36px, 1100px);
+    }
+}
+
+@media (max-width: 800px) {
+    .dashboard-header,
+    .technician-header,
+    .admin-header {
+        min-height: auto;
+        padding: 12px 18px;
+        gap: 12px;
+    }
+
+    .dashboard-header h1,
+    .technician-header h1,
+    .admin-header h1 {
+        font-size: 20px;
+    }
+
+    .dashboard-header p,
+    .technician-header p,
+    .admin-header p {
+        display: none;
+    }
+
+    .user-info,
+    .technician-user,
+    .admin-user {
+        gap: 8px;
+    }
+
+    .user-info > span {
+        display: none;
+    }
+
+    .admin-profile span {
+        display: none;
+    }
+
+    .dashboard-content,
+    .technician-content,
+    .admin-content {
+        width: calc(100% - 28px);
+        padding-top: 22px;
+    }
+
+    .welcome-card,
+    .technician-welcome,
+    .admin-welcome {
+        padding: 25px 22px;
+        border-radius: 20px;
+    }
+
+    .technician-welcome,
+    .admin-welcome {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .specialization-card {
+        width: 100%;
+    }
+
+    .complaints-section,
+    .technician-section,
+    .analytics-section,
+    .admin-section {
+        padding: 21px;
+        border-radius: 18px;
+    }
+
+    .complaint-card,
+    .technician-complaint-card,
+    .admin-complaint-card {
+        flex-direction: column;
+    }
+
+    .complaint-info {
+        flex-direction: column;
+    }
+
+    .complaint-image,
+    .no-photo,
+    .technician-photo,
+    .technician-photo img,
+    .technician-no-photo,
+    .admin-photo,
+    .admin-photo img,
+    .admin-no-photo {
+        width: 100%;
+        height: 220px;
+    }
+
+    .complaint-meta {
+        width: 100%;
+        min-width: 0;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .complaint-meta span,
+    .status-badge,
+    .technician-status {
+        flex: 0 0 auto;
+    }
+
+    .admin-controls,
+    .technician-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .technician-actions select {
+        width: 100%;
+    }
+
+    .request-card {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .request-actions {
+        width: 100%;
+        margin-left: 58px;
+    }
+}
+
+@media (max-width: 600px) {
+    .auth-container {
+        padding: 22px 14px;
+    }
+
+    .auth-card {
+        padding: 32px 22px 27px;
+        border-radius: 21px;
+    }
+
+    .auth-title,
+    .auth-card > h1 {
+        font-size: 27px;
+    }
+
+    .dashboard-grid,
+    .technician-stats,
+    .admin-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-header,
+    .technician-header,
+    .admin-header {
+        flex-wrap: wrap;
+    }
+
+    .admin-user {
+        margin-left: auto;
+    }
+
+    .admin-logout,
+    .user-info button,
+    .technician-user > button {
+        padding: 8px 10px;
+    }
+
+    .complaint-form-card {
+        padding: 25px 18px;
+        border-radius: 20px;
+    }
+
+    .complaint-page {
+        padding: 20px 12px 45px;
+    }
+
+    .camera-section {
+        padding: 20px 14px;
+    }
+
+    .section-header,
+    .technician-section-header,
+    .analytics-header,
+    .admin-section-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .analytics-total {
+        width: 100%;
+    }
+
+    .request-actions {
+        margin-left: 0;
+    }
+
+    .approve-button,
+    .reject-button {
+        flex: 1;
+    }
+}

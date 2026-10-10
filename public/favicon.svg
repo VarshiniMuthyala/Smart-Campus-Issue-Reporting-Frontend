@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 44 44" fill="none">
+    <defs>
+        <linearGradient id="fixoraGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#F5D76E" />
+            <stop offset="50%" stopColor="#D4AF37" />
+            <stop offset="100%" stopColor="#A67C00" />
+        </linearGradient>
+        <linearGradient id="fixoraDarkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#18181B" />
+            <stop offset="100%" stopColor="#0B0B0F" />
+        </linearGradient>
+    </defs>
+    <rect x="1.5" y="1.5" width="41" height="41" rx="10" fill="url(#fixoraDarkGrad)" stroke="url(#fixoraGoldGrad)" stroke-width="2"/>
+    <rect x="10.5" y="9.5" width="5.5" height="25" rx="2.5" fill="url(#fixoraGoldGrad)"/>
+    <path d="M14 9.5 H28 C29.5 9.5 31 10.5 31.8 11.8 L33.2 13.8 C33.8 14.7 33.6 15.9 32.7 16.5 C31.8 17.1 30.6 16.9 30 16 L28.8 14.5 H14 V9.5 Z" fill="url(#fixoraGoldGrad)"/>
+    <path d="M26.5 9.5 C26.5 12 28.5 14 31 14 C32 14 32.8 13.6 33.5 13 L35 15 C33.8 16.3 32 17.2 30 17.2 C26.2 17.2 23 14 23 10.2 C23 9.9 23 9.7 23.1 9.5 H26.5 Z" fill="#F5D76E"/>
+    <path d="M14 20 H25 C26.4 20 27.5 21.1 27.5 22.5 C27.5 23.9 26.4 25 25 25 H14 V20 Z" fill="url(#fixoraGoldGrad)"/>
+    <circle cx="32" cy="30" r="2.2" fill="#F5D76E"/>
+    <circle cx="28" cy="34" r="1.4" fill="#D4AF37" opacity="0.8"/>
+</svg>
