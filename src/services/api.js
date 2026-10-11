@@ -1,8 +1,10 @@
 import axios from "axios";
 
+export const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "https://smart-campus-issue-reporting-backend.onrender.com";
+
 const api = axios.create({
-    baseURL: "http://localhost:4040/api",
-    timeout: 15000
+    baseURL: import.meta.env.VITE_API_URL || `${BACKEND_URL}/api`,
+    timeout: 30000
 });
 
 // =========================================================
